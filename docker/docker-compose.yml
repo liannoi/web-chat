@@ -2,6 +2,16 @@ version: "3.8"
 
 services:
 
+  dotnet-core:
+    build:
+      context: ../src/system
+    ports:
+      - "8080:80"
+    networks:
+      - default
+    depends_on:
+      - mssql
+
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:

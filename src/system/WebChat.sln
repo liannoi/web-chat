@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C6C2E011-AFDD-4C98-9588-4A58DAD75B25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{360AD6E8-25A8-4236-8342-1DF6BEB51076}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{B5856E4B-6397-41D3-BC98-39D57CEB00DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChat.Domain", "core\domain\WebChat.Domain.csproj", "{96B94E39-C659-498D-81BC-8F31B0B69D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChat.Infrastructure", "infrastructure\WebChat.Infrastructure.csproj", "{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChat.Application", "core\application\WebChat.Application.csproj", "{670D4A2B-36BB-42D0-8454-58CD80BF7365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChat.Api", "api\WebChat.Api.csproj", "{27CC8CB5-490A-4D7E-82A3-F565031DC4E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96B94E39-C659-498D-81BC-8F31B0B69D64} = {B5856E4B-6397-41D3-BC98-39D57CEB00DB}
+		{670D4A2B-36BB-42D0-8454-58CD80BF7365} = {B5856E4B-6397-41D3-BC98-39D57CEB00DB}
+		{27CC8CB5-490A-4D7E-82A3-F565031DC4E6} = {C6C2E011-AFDD-4C98-9588-4A58DAD75B25}
+		{B5856E4B-6397-41D3-BC98-39D57CEB00DB} = {C6C2E011-AFDD-4C98-9588-4A58DAD75B25}
+		{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7} = {C6C2E011-AFDD-4C98-9588-4A58DAD75B25}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96B94E39-C659-498D-81BC-8F31B0B69D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B94E39-C659-498D-81BC-8F31B0B69D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B94E39-C659-498D-81BC-8F31B0B69D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B94E39-C659-498D-81BC-8F31B0B69D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECBD3DF2-F741-44D7-8A4A-4EB3E640E6F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670D4A2B-36BB-42D0-8454-58CD80BF7365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670D4A2B-36BB-42D0-8454-58CD80BF7365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670D4A2B-36BB-42D0-8454-58CD80BF7365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670D4A2B-36BB-42D0-8454-58CD80BF7365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CC8CB5-490A-4D7E-82A3-F565031DC4E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CC8CB5-490A-4D7E-82A3-F565031DC4E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CC8CB5-490A-4D7E-82A3-F565031DC4E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CC8CB5-490A-4D7E-82A3-F565031DC4E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
