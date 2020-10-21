@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./volumes/mssql:/var/opt/mssql
+    networks:
+      - default
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "a91c724ac0fb29e1b71902aed66da095603799de6e46d151b9c908c41ac6526e"
+      MSSQL_PID: "Developer"
+
+networks:
+  default:
+    driver: bridge
