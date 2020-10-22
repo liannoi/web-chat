@@ -1,0 +1,7 @@
+namespace WebChat.Application.Common.Interfaces
+{
+    public interface ICurrentUserService
+    {
+        string UserId { get; }
+    }
+}

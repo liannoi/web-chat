@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WebChat.Application;
 using WebChat.Infrastructure;
 using WebChat.Infrastructure.Persistence;
 
@@ -25,6 +26,7 @@ namespace WebChat.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructureServices(Configuration);
+            services.AddApplicationServices();
 
             services.AddHealthChecks().AddDbContextCheck<WebChatContext>();
 
