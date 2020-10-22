@@ -11,6 +11,8 @@ services:
       - default
     depends_on:
       - mssql
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest

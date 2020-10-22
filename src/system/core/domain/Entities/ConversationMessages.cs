@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WebChat.Infrastructure.Models
+﻿namespace WebChat.Domain.Entities
 {
-    public partial class ConversationMessages
+    public class ConversationMessages
     {
         public int ConversationMessageId { get; set; }
         public int ConversationId { get; set; }

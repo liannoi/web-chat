@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WebChat.Infrastructure.Models
+﻿namespace WebChat.Domain.Entities
 {
-    public partial class GroupBlacklists
+    public class GroupBlacklists
     {
         public int GroupId { get; set; }
         public int BlockedUserId { get; set; }

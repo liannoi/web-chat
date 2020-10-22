@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WebChat.Infrastructure.Models
+﻿namespace WebChat.Domain.Entities
 {
-    public partial class GroupAdministrators
+    public class GroupAdministrators
     {
         public int GroupId { get; set; }
         public int AdministratorUserId { get; set; }

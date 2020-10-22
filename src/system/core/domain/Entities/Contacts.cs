@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WebChat.Infrastructure.Models
+﻿namespace WebChat.Domain.Entities
 {
-    public partial class Contacts
+    public class Contacts
     {
         public int ContactId { get; set; }
         public int OwnerUserId { get; set; }

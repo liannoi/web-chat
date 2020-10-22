@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace WebChat.Infrastructure.Models
+namespace WebChat.Domain.Entities
 {
-    public partial class Conversations
+    public class Conversations
     {
         public Conversations()
         {
