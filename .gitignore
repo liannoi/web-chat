@@ -1,4 +1,4 @@
-docker/volumes/
+src/.volumes/
 
 # Angular
 # Reference: https://www.gitignore.io/api/angular
