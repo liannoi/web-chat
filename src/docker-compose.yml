@@ -2,16 +2,16 @@ version: "3.8"
 
 services:
 
-#  dotnet-core:
-#    build: .
-#    ports:
-#      - "8080:80"
-#    networks:
-#      - default
-#    depends_on:
-#      - mssql
-#    environment:
-#      ASPNETCORE_ENVIRONMENT: "Development"
+  dotnet-core:
+    build: .
+    ports:
+      - "8080:80"
+    networks:
+      - default
+    depends_on:
+      - mssql
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
