@@ -30,7 +30,7 @@ namespace WebChat.Application.API.Common.Behaviours
 
             var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
-            return failures.Count != 0 ? throw new Exceptions.ValidationException(failures) : await next();
+            return failures.Count != 0 ? throw new ValidationException(failures) : await next();
         }
     }
 }

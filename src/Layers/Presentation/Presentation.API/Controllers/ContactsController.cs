@@ -1,7 +1,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Contacts.Commands.Create;
+using WebChat.Application.API.Storage.Contacts.Commands.Delete;
+using WebChat.Application.API.Storage.Contacts.Commands.Update;
 using WebChat.Application.API.Storage.Contacts.Models;
+using WebChat.Application.API.Storage.Contacts.Queries.Details;
 using WebChat.Application.API.Storage.Contacts.Queries.List;
 
 namespace WebChat.Presentation.API.Controllers
@@ -15,27 +18,29 @@ namespace WebChat.Presentation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<DetailsViewModel>> Create([FromBody] CreateCommand command)
+        public async Task<ActionResult<int>> Create([FromBody] CreateCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById()
+        public async Task<ActionResult<DetailsViewModel>> GetById(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new DetailsQuery {ContactId = id}));
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id)
+        public async Task<ActionResult<DetailsViewModel>> Update(int id, [FromBody] UpdateCommand command)
         {
-            return Ok();
+            command.ContactId = id;
+
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new DeleteCommand {ContactId = id}));
         }
     }
 }
