@@ -5,7 +5,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WebChat.Application.API.Common.Interfaces;
-using WebChat.Application.API.Storage.Contacts.Models;
 
 namespace WebChat.Application.API.Storage.Contacts.Commands.Delete
 {

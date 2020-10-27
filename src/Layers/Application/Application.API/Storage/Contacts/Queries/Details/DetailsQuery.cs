@@ -10,11 +10,11 @@ using WebChat.Application.API.Storage.Contacts.Models;
 
 namespace WebChat.Application.API.Storage.Contacts.Queries.Details
 {
-    public class DetailsQuery:IRequest<DetailsViewModel>
+    public class DetailsQuery : IRequest<DetailsViewModel>
     {
         public int ContactId { get; set; }
-        
-        private class Handler:IRequestHandler<DetailsQuery,DetailsViewModel>
+
+        private class Handler : IRequestHandler<DetailsQuery, DetailsViewModel>
         {
             private readonly IWebChatContext _context;
             private readonly IMapper _mapper;

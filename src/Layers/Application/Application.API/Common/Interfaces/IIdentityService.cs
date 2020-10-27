@@ -9,8 +9,8 @@ namespace WebChat.Application.API.Common.Interfaces
 
         Task<bool> UserIsInRole(string userId, string role);
 
-        Task<(TupleResult Result, string UserId)> CreateUserAsync(string userName, string password);
+        Task<(IdenitityResult Result, string UserId)> CreateUserAsync(string userName, string password);
 
-        Task<TupleResult> DeleteUserAsync(string userId);
+        Task<IdenitityResult> DeleteUserAsync(string userId);
     }
 }

@@ -6,20 +6,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Application\Application.API\WebChat.Application.API.csproj"/>
-        <ProjectReference Include="..\..\Domain\Domain.API\WebChat.Domain.API.csproj"/>
+        <ProjectReference Include="..\..\Application\Application.API\WebChat.Application.API.csproj" />
+        <ProjectReference Include="..\..\Domain\Domain.API\WebChat.Domain.API.csproj" />
     </ItemGroup>
 
 </Project>
