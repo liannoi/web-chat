@@ -1,0 +1,25 @@
+<div class="row mt-5 d-flex justify-content-center align-items-center">
+  <div class="col-sm-12">
+    <h2 class="text-center mt-3 font-weight-light">Sign in to WebChat</h2>
+  </div>
+</div>
+
+<div class="row mt-3 d-flex justify-content-center align-items-center">
+  <div class="col-sm-4">
+    <form (ngSubmit)="login()" [formGroup]="formGroup" class="bg-white p-4 auth-form-body" method="post">
+      <div class="form-group">
+        <label class="font-weight-bold" for="user_username">Username</label>
+        <input class="form-control" formControlName="user[username]" id="user_username" required type="text">
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold" for="user_password">Password</label>
+        <input class="form-control" formControlName="user[password]" id="user_password" required type="password">
+      </div>
+      <div class="form-row">
+        <div class="col-sm-12">
+          <button class="btn btn-success w-100 font-weight-bold" type="submit">Sign in</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

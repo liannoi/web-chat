@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebChat.Application.API.Common.Identity;
+using WebChat.Application.API.Storage.Users.Identity.Models;
 using WebChat.Infrastructure.API.Identity.Common.Extensions;
 using WebChat.Infrastructure.API.Identity.Common.Models;
 using WebChat.Infrastructure.API.Identity.Common.Server;
@@ -27,12 +28,12 @@ namespace WebChat.Infrastructure.API.Identity.Services
             return user.UserName;
         }
 
-        public async Task<(IdentityResult Result, string Token)> GetUserAsync(string userName, string password)
+        public async Task<(IdentityResult Result, JwtToken Token)> GetUserAsync(string userName, string password)
         {
             var user = await _manager.FindByNameAsync(userName);
             await _manager.CheckPasswordAsync(user, password);
 
-            return (IdentityResult.Success(), CreateToken(user));
+            return (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)});
         }
 
         public async Task<bool> UserIsInRole(string userId, string role)
@@ -42,12 +43,12 @@ namespace WebChat.Infrastructure.API.Identity.Services
             return await _manager.IsInRoleAsync(user, role);
         }
 
-        public async Task<(IdentityResult Result, string Token)> CreateUserAsync(string userName, string password)
+        public async Task<(IdentityResult Result, JwtToken Token)> CreateUserAsync(string userName, string password)
         {
             var user = new ApplicationUser {UserName = userName, Email = userName};
             var result = await _manager.CreateAsync(user, password);
 
-            return (result.ToApplicationResult(), CreateToken(user));
+            return (result.ToApplicationResult(), new JwtToken {Value = CreateToken(user)});
         }
 
         public async Task<IdentityResult> DeleteUserAsync(string userId)

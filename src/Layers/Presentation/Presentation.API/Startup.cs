@@ -39,6 +39,7 @@ namespace WebChat.Presentation.API
             services.AddHealthChecks().AddDbContextCheck<WebChatContext>().AddDbContextCheck<WebChatIdentityContext>();
             services.AddHealthChecksUI().AddInMemoryStorage();
 
+            services.AddCors();
             services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilterAttribute()));
 
             // Open API
@@ -82,6 +83,11 @@ namespace WebChat.Presentation.API
                 settings.Path = "/api";
                 settings.DocumentPath = "/swagger/v1/swagger.json";
             });
+
+            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseRouting();
             app.UseAuthentication();
