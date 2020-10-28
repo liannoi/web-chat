@@ -4,9 +4,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using WebChat.Infrastructure.API.Identity.Persistence.Context;
 
-namespace WebChat.Infrastructure.API.Identity.Persistence.Migrations
+namespace WebChat.Infrastructure.API.Identity.Migrations
 {
     [DbContext(typeof(WebChatIdentityContext))]
     internal class WebChatIdentityContextModelSnapshot : ModelSnapshot

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WebChat.Infrastructure.API.Identity.Persistence.Context;
+using WebChat.Infrastructure.API.Identity;
 
 namespace WebChat.Presentation.API
 {

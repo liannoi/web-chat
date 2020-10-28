@@ -1,4 +1,4 @@
-namespace WebChat.Application.API.Common.Interfaces
+namespace WebChat.Application.API.Common.Identity
 {
     public interface ICurrentUserService
     {

@@ -62,8 +62,6 @@
         <Folder Include="Storage\Users\Groups\Models" />
         <Folder Include="Storage\Users\Groups\Queries\Details" />
         <Folder Include="Storage\Users\Groups\Queries\List" />
-        <Folder Include="Storage\Users\Identity\Commands\Delete" />
-        <Folder Include="Storage\Users\Identity\Commands\Update" />
         <Folder Include="Storage\Users\Identity\Models" />
         <Folder Include="Storage\Users\Identity\Queries\Details" />
         <Folder Include="Storage\Users\Identity\Queries\List" />

@@ -1,11 +1,19 @@
+using System.Text;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
 using WebChat.Infrastructure.API.Identity;
-using WebChat.Infrastructure.API.Identity.Persistence;
-using WebChat.Infrastructure.API.Identity.Persistence.Context;
+using WebChat.Infrastructure.API.Identity.Common.Models;
+using WebChat.Infrastructure.API.Identity.Describers;
+using WebChat.Infrastructure.API.Identity.Services;
 using WebChat.Infrastructure.API.Persistence;
 
 namespace WebChat.Infrastructure.API
@@ -15,20 +23,41 @@ namespace WebChat.Infrastructure.API
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
             IConfiguration configuration)
         {
-            // Main Database.
+            // Persistence.
             services.AddDbContext<WebChatContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("WebChatDatabase")));
+                options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.Database)));
 
             services.AddScoped<IWebChatContext>(provider => provider.GetService<WebChatContext>());
 
-            // ASP.NET Core Identity Database.
+            // Identity.
             services.AddDbContext<WebChatIdentityContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("WebChatIdentityDatabase")));
+                options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase)));
 
-            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<WebChatIdentityContext>();
-            services.AddIdentityServer().AddApiAuthorization<ApplicationUser, WebChatIdentityContext>();
+            services.AddIdentity<ApplicationUser,IdentityRole>()
+                .AddEntityFrameworkStores<WebChatIdentityContext>()
+                .AddErrorDescriber<ErrorDescriber>();
+
+            services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();
-            services.AddAuthentication().AddIdentityServerJwt();
+
+            var section = configuration.GetSection(InfrastructureDefaults.JwtSectionName);
+            services.Configure<IdentitySettings>(section);
+            var appSettings = section.Get<IdentitySettings>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = appSettings.Issuer,
+                        ValidAudience = appSettings.Issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Secret))
+                    };
+                });
 
             return services;
         }

@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace WebChat.Infrastructure.API.Identity.Persistence.Context
+namespace WebChat.Infrastructure.API.Factory
 {
-    public abstract class DesignTimeDbContextFactoryBase<TContext> : IDesignTimeDbContextFactory<TContext>
+    public abstract class AbstractDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : DbContext
     {
         public TContext CreateDbContext(string[] args)
         {
-            return Create(IdentityDefaults.ApplicationStartDirectory,
-                Environment.GetEnvironmentVariable(IdentityDefaults.Environment));
+            return Create(InfrastructureDefaults.StartDirectory,
+                Environment.GetEnvironmentVariable(InfrastructureDefaults.Environment));
         }
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
@@ -24,7 +24,7 @@ namespace WebChat.Infrastructure.API.Identity.Persistence.Context
                 .AddJsonFile("appsettings.Local.json", true)
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()
-                .Build().GetConnectionString(IdentityDefaults.DatabaseNameInConnectionString));
+                .Build().GetConnectionString(InfrastructureDefaults.Database));
         }
 
         private TContext Create(string connectionString)
@@ -32,7 +32,7 @@ namespace WebChat.Infrastructure.API.Identity.Persistence.Context
             if (string.IsNullOrEmpty(connectionString))
             {
                 throw new ArgumentException(
-                    $"Connection string '{IdentityDefaults.DatabaseNameInConnectionString}' is null or empty.",
+                    $"Connection string '{InfrastructureDefaults.Database}' is null or empty.",
                     nameof(connectionString));
             }
 

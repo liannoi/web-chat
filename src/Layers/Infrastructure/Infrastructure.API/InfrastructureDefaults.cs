@@ -1,14 +1,15 @@
 using System.IO;
 
-namespace WebChat.Infrastructure.API.Identity
+namespace WebChat.Infrastructure.API
 {
-    public static class IdentityDefaults
+    public static class InfrastructureDefaults
     {
-        public static string DatabaseNameInConnectionString => "WebChatDatabase";
-        public static string IdentityDatabaseNameInConnectionString => "WebChatIdentityDatabase";
+        public static string Database => "WebChatDatabase";
+        public static string IdentityDatabase => "WebChatIdentityDatabase";
         public static string Environment => "ASPNETCORE_ENVIRONMENT";
-
-        public static string ApplicationStartDirectory
+        public static string JwtSectionName => "JsonWebToken";
+        
+        public static string StartDirectory
         {
             get
             {

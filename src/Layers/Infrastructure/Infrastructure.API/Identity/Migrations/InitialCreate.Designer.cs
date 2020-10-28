@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using WebChat.Infrastructure.API.Identity.Persistence.Context;
 
-namespace WebChat.Infrastructure.API.Identity.Persistence.Migrations
+namespace WebChat.Infrastructure.API.Identity.Migrations
 {
     [DbContext(typeof(WebChatIdentityContext))]
     [Migration("20201027152649_InitialCreate")]

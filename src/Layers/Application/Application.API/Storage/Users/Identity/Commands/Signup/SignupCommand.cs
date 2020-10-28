@@ -1,16 +1,17 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
 
 namespace WebChat.Application.API.Storage.Users.Identity.Commands.Create
 {
-    public class CreateCommand : IRequest
+    public class SignupCommand : IRequest<string>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        private class Handler : IRequestHandler<CreateCommand>
+        private class Handler : IRequestHandler<SignupCommand, string>
         {
             private readonly IIdentityService _identityService;
 
@@ -19,11 +20,11 @@ namespace WebChat.Application.API.Storage.Users.Identity.Commands.Create
                 _identityService = identityService;
             }
 
-            public async Task<Unit> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<string> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
                 var tmp = await _identityService.CreateUserAsync(request.UserName, request.Password);
 
-                return Unit.Value;
+                return tmp.Token;
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebChat.Infrastructure.API.Identity.Persistence.Migrations
+namespace WebChat.Infrastructure.API.Identity.Migrations
 {
     public partial class InitialCreate : Migration
     {
