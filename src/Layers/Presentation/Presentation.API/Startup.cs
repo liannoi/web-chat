@@ -10,7 +10,6 @@ using NSwag;
 using NSwag.Generation.Processors.Security;
 using WebChat.Application.API;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Application.API.Common.Interfaces;
 using WebChat.Infrastructure.API;
 using WebChat.Infrastructure.API.Identity;
 using WebChat.Infrastructure.API.Persistence;

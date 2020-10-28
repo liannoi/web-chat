@@ -1,14 +1,8 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Application.API.Common.Interfaces;
 using WebChat.Infrastructure.API.Identity.Common.Extensions;
 using WebChat.Infrastructure.API.Identity.Common.Models;
 using WebChat.Infrastructure.API.Identity.Common.Server;
@@ -29,14 +23,14 @@ namespace WebChat.Infrastructure.API.Identity.Services
         public async Task<string> GetUserNameAsync(string userId)
         {
             var user = await GetUserAsync(userId);
-            
+
             return user.UserName;
         }
 
         public async Task<(IdentityResult Result, string Token)> GetUserAsync(string userName, string password)
         {
-            var user=await _manager.FindByNameAsync(userName);
-            var result = await _manager.CheckPasswordAsync(user, password);
+            var user = await _manager.FindByNameAsync(userName);
+            await _manager.CheckPasswordAsync(user, password);
 
             return (IdentityResult.Success(), CreateToken(user));
         }

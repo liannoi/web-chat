@@ -30,15 +30,13 @@ namespace WebChat.Infrastructure.API.Factory
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
-            {
                 throw new ArgumentException(
                     $"Connection string '{InfrastructureDefaults.Database}' is null or empty.",
                     nameof(connectionString));
-            }
 
             Console.WriteLine(
                 $"DesignTimeDbContextFactoryBase.Create(string): Connection string: '{connectionString}'.");
-            
+
             var optionsBuilder = new DbContextOptionsBuilder<TContext>();
             optionsBuilder.UseSqlServer(connectionString);
 

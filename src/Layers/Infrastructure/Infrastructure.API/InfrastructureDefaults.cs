@@ -8,7 +8,7 @@ namespace WebChat.Infrastructure.API
         public static string IdentityDatabase => "WebChatIdentityDatabase";
         public static string Environment => "ASPNETCORE_ENVIRONMENT";
         public static string JwtSectionName => "JsonWebToken";
-        
+
         public static string StartDirectory
         {
             get

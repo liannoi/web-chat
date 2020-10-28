@@ -21,9 +21,7 @@ namespace WebChat.Application.API.Storage.Users.Identity.Commands.Login
 
             public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                var tmp = await _identityService.GetUserAsync(request.UserName, request.Password);
-
-                return tmp.Token;
+                return (await _identityService.GetUserAsync(request.UserName, request.Password)).Token;
             }
         }
     }

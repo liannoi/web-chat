@@ -1,9 +1,6 @@
 using System.Text;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +30,7 @@ namespace WebChat.Infrastructure.API
             services.AddDbContext<WebChatIdentityContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase)));
 
-            services.AddIdentity<ApplicationUser,IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WebChatIdentityContext>()
                 .AddErrorDescriber<ErrorDescriber>();
 

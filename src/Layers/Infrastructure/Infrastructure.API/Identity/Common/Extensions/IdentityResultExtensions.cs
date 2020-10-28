@@ -1,5 +1,5 @@
 using System.Linq;
-using IdentityResult = WebChat.Application.API.Common.Identity.IdentityResult;
+using WebChat.Application.API.Common.Identity;
 
 namespace WebChat.Infrastructure.API.Identity.Common.Extensions
 {

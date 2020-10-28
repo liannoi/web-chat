@@ -1,10 +1,8 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Application.API.Common.Interfaces;
 
 namespace WebChat.Presentation.API.Services
 {
@@ -13,25 +11,30 @@ namespace WebChat.Presentation.API.Services
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             var stream = httpContextAccessor.HttpContext.Request.Headers["Authorization"];
-            if (stream.Count == 0)
-            {
-                return;
-            }
-            var handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken tokenS;
+            if (stream.Count == 0) return;
+
+            UserId = ReadToken(stream);
+        }
+
+        public string UserId { get; }
+
+        // Helpers.
+
+        private string ReadToken(StringValues stream)
+        {
+            var trimmedStream = stream.ToString().Replace("Bearer ", string.Empty);
+
+            JwtSecurityToken token;
             try
             {
-                 tokenS = handler.ReadJwtToken(stream.ToString().Replace("Bearer ", string.Empty));
+                token = new JwtSecurityTokenHandler().ReadJwtToken(trimmedStream);
             }
             catch (ArgumentException)
             {
                 throw new UnauthorizedAccessException();
             }
-            
-            var jwi = tokenS.Subject;
-            UserId = jwi;
-        }
 
-        public string UserId { get; }
+            return token.Subject;
+        }
     }
 }

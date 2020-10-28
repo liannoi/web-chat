@@ -2,9 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Application.API.Common.Interfaces;
 
-namespace WebChat.Application.API.Storage.Users.Identity.Commands.Create
+namespace WebChat.Application.API.Storage.Users.Identity.Commands.Signup
 {
     public class SignupCommand : IRequest<string>
     {
@@ -22,9 +21,7 @@ namespace WebChat.Application.API.Storage.Users.Identity.Commands.Create
 
             public async Task<string> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
-                var tmp = await _identityService.CreateUserAsync(request.UserName, request.Password);
-
-                return tmp.Token;
+                return (await _identityService.CreateUserAsync(request.UserName, request.Password)).Token;
             }
         }
     }
