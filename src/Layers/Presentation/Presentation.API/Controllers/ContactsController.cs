@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Contacts.Commands.Create;
 using WebChat.Application.API.Storage.Contacts.Commands.Delete;
@@ -12,6 +13,8 @@ namespace WebChat.Presentation.API.Controllers
     public class ContactsController : BaseController
     {
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<ListViewModel>> GetAll()
         {
             return Ok(await Mediator.Send(new ListQuery()));

@@ -4,9 +4,8 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using WebChat.Application.API.Common.Exceptions;
-using WebChat.Application.API.Common.Interfaces;
+using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Security;
 
 namespace WebChat.Application.API.Common.Behaviours
@@ -15,12 +14,9 @@ namespace WebChat.Application.API.Common.Behaviours
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IIdentityService _identityService;
-        private readonly ILogger<TRequest> _logger;
 
-        public AuthorizationBehavior(ILogger<TRequest> logger, ICurrentUserService currentUserService,
-            IIdentityService identityService)
+        public AuthorizationBehavior(ICurrentUserService currentUserService, IIdentityService identityService)
         {
-            _logger = logger;
             _currentUserService = currentUserService;
             _identityService = identityService;
         }

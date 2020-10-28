@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 using WebChat.Application.API;
+using WebChat.Application.API.Common.Identity;
 using WebChat.Infrastructure.API;
+using WebChat.Infrastructure.API.Identity;
 using WebChat.Infrastructure.API.Persistence;
+using WebChat.Presentation.API.Filters;
+using WebChat.Presentation.API.Services;
 
 namespace WebChat.Presentation.API
 {
@@ -28,26 +33,29 @@ namespace WebChat.Presentation.API
             services.AddInfrastructureServices(Configuration);
             services.AddApplicationServices();
 
-            services.AddHealthChecks().AddDbContextCheck<WebChatContext>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+            services.AddHealthChecks().AddDbContextCheck<WebChatContext>().AddDbContextCheck<WebChatIdentityContext>();
             services.AddHealthChecksUI().AddInMemoryStorage();
 
-            // TODO: With filter indication.
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilterAttribute()));
 
-            services.AddSwaggerGen(c =>
+            // Open API
+            services.AddOpenApiDocument(configure =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                configure.Title = "Web Chat API";
+                configure.Description = "Coursework in Web Programming";
+
+                configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
                 {
-                    Version = "v1",
-                    Title = "Web Chat API",
-                    Description = "Coursework in Web Programming",
-                    License = new OpenApiLicense
-                    {
-                        Name = "Web API licensed under Apache-2.0",
-                        Url = new Uri("https://github.com/liannoi/web-chat/blob/main/LICENSE")
-                    }
+                    Type = OpenApiSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = OpenApiSecurityApiKeyLocation.Header,
+                    Description = "Type into the textbox: Bearer {your JWT token}."
                 });
+
+                configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
         }
 
@@ -68,10 +76,16 @@ namespace WebChat.Presentation.API
 
             app.UseHttpsRedirection();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web Chat API v1"));
+            app.UseOpenApi();
+            app.UseSwaggerUi3(settings =>
+            {
+                settings.Path = "/api";
+                settings.DocumentPath = "/swagger/v1/swagger.json";
+            });
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");

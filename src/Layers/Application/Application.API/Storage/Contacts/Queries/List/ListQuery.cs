@@ -5,10 +5,12 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WebChat.Application.API.Common.Interfaces;
+using WebChat.Application.API.Common.Security;
 using WebChat.Application.API.Storage.Contacts.Models;
 
 namespace WebChat.Application.API.Storage.Contacts.Queries.List
 {
+    [Authorize]
     public class ListQuery : IRequest<ListViewModel>
     {
         private class Handler : IRequestHandler<ListQuery, ListViewModel>
