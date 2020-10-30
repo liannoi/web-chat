@@ -4,6 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 
+import {CookieService} from 'ngx-cookie-service';
+
 import {LoginComponent} from './login/login.component';
 import {ApplicationPaths} from './auth.constants';
 import {AuthService} from './auth.service';
@@ -21,7 +23,10 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [LoginComponent],
-  providers: [AuthService]
+  providers: [
+    AuthService,
+    CookieService
+  ],
 })
 export class AuthModule {
 }

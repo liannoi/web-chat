@@ -5,9 +5,8 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebChat.Infrastructure.API.Identity.Common.Models;
 
-namespace WebChat.Infrastructure.API.Identity.Common.Server
+namespace WebChat.Infrastructure.API.Identity.Server
 {
     public abstract class AbstractIdentityServer : IIdentityServer
     {

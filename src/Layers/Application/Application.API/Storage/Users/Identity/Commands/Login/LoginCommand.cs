@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -22,7 +23,14 @@ namespace WebChat.Application.API.Storage.Users.Identity.Commands.Login
 
             public async Task<JwtToken> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                return (await _identityService.GetUserAsync(request.UserName, request.Password)).Token;
+                try
+                {
+                    return (await _identityService.GetUserAsync(request.UserName, request.Password)).Token;
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    throw e;
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 using System;
 
-namespace WebChat.Application.API.Common.Security
+namespace WebChat.Application.API.Common.Identity
 {
     /// <summary>
     ///     Specifies the class this attribute is applied to requires authorization.

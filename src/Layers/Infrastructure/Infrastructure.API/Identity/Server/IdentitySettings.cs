@@ -1,4 +1,4 @@
-namespace WebChat.Infrastructure.API.Identity.Common.Models
+namespace WebChat.Infrastructure.API.Identity.Server
 {
     public class IdentitySettings
     {

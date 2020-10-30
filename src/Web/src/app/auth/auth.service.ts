@@ -5,8 +5,8 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 import {ApiEndpoints} from '../api/api.constants';
-import {UserModel} from './user.model';
-import {JwtTokenModel} from './jwt-token.model';
+import {UserModel} from './common/models/user.model';
+import {JwtTokenModel} from './common/models/jwt-token.model';
 
 @Injectable()
 export class AuthService {

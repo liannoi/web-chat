@@ -1,6 +1,6 @@
 <div class="row mt-5 d-flex justify-content-center align-items-center">
   <div class="col-sm-12">
-    <h2 class="text-center mt-3 font-weight-light">Sign in to WebChat</h2>
+    <h2 class="text-center mt-3 font-weight-light">Sign in to Web Chat</h2>
   </div>
 </div>
 
@@ -9,15 +9,42 @@
     <form (ngSubmit)="login()" [formGroup]="formGroup" class="bg-white p-4 auth-form-body" method="post">
       <div class="form-group">
         <label class="font-weight-bold" for="user_username">Username</label>
-        <input class="form-control" formControlName="user[username]" id="user_username" required type="text">
+        <input class="form-control" formControlName="userName" id="user_username" required type="text">
+
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger mt-1">
+          <div *ngIf="userName.errors.required">
+            <span>Username cannot be empty.</span>
+          </div>
+          <div *ngIf="userName.errors.pattern">
+            <span>Username cannot contain spaces.</span>
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
         <label class="font-weight-bold" for="user_password">Password</label>
-        <input class="form-control" formControlName="user[password]" id="user_password" required type="password">
+        <input class="form-control" formControlName="password" id="user_password" required type="password">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger mt-1">
+          <div *ngIf="password.errors.required">
+            <span>Password cannot be empty.</span>
+          </div>
+          <div *ngIf="password.errors.pattern">
+            <span>Make sure it's at least 8 characters, including a number, uppercase and lowercase letters.</span>
+          </div>
+        </div>
+
+        <div *ngIf="haveFirstAttempt && (formGroup.errors?.unauthorized && (formGroup.touched || formGroup.dirty))"
+             class="text-danger mt-3">
+          <span>Username or password is incorrect.</span>
+        </div>
       </div>
+
       <div class="form-row">
         <div class="col-sm-12">
-          <button class="btn btn-success w-100 font-weight-bold" type="submit">Sign in</button>
+          <button [disabled]="formGroup.invalid" class="btn btn-success w-100 font-weight-bold" type="submit">Sign in
+          </button>
+          <a class="btn btn-light w-100 font-weight-bold mt-2 border" href="#">Create your account</a>
         </div>
       </div>
     </form>

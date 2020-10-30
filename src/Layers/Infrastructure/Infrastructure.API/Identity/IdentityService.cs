@@ -1,15 +1,14 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Storage.Users.Identity.Models;
-using WebChat.Infrastructure.API.Identity.Common.Extensions;
-using WebChat.Infrastructure.API.Identity.Common.Models;
-using WebChat.Infrastructure.API.Identity.Common.Server;
+using WebChat.Infrastructure.API.Identity.Server;
 using IdentityResult = WebChat.Application.API.Common.Identity.IdentityResult;
 
-namespace WebChat.Infrastructure.API.Identity.Services
+namespace WebChat.Infrastructure.API.Identity
 {
     public class IdentityService : AbstractIdentityServer, IIdentityService
     {
@@ -31,7 +30,9 @@ namespace WebChat.Infrastructure.API.Identity.Services
         public async Task<(IdentityResult Result, JwtToken Token)> GetUserAsync(string userName, string password)
         {
             var user = await _manager.FindByNameAsync(userName);
-            await _manager.CheckPasswordAsync(user, password);
+            var isChecked = await _manager.CheckPasswordAsync(user, password);
+
+            if (user == null || !isChecked) throw new UnauthorizedAccessException();
 
             return (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)});
         }

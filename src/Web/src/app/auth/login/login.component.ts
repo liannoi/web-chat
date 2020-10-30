@@ -1,11 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {CookieService} from 'ngx-cookie-service';
 
 import {AuthService} from '../auth.service';
+import {UserModel} from '../common/models/user.model';
+import {unauthorizedValidator} from '../common/validators/unauthorized.validator';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +17,24 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public formGroup: FormGroup;
+  public haveFirstAttempt = false;
+  private user: UserModel;
   private $stop: Subject<void> = new Subject<void>();
 
-  public constructor(private authService: AuthService, private router: Router) {
+  public constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {
+    this.user = {userName: '', password: ''};
+  }
+
+  get userName() {
+    return this.formGroup.get('userName');
+  }
+
+  get password() {
+    return this.formGroup.get('password');
   }
 
   public ngOnInit() {
-    this.formGroup = new FormGroup({
-      'user[username]': new FormControl(),
-      'user[password]': new FormControl()
-    });
+    this.setupForm();
   }
 
   public ngOnDestroy() {
@@ -31,22 +42,42 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.$stop.complete();
   }
 
-  public login(): void {
-    let jwt: string;
+  public login() {
+    if (!this.formGroup.valid) {
+      return;
+    }
 
-    this.authService.login({userName: 'test', password: '123mcmc123!!PASS'})
+    const user = this.formGroup.getRawValue() as UserModel;
+
+    this.authService.login(user)
       .pipe(takeUntil(this.$stop))
-      .subscribe((result) => {
-        jwt = result.value;
-        console.log(jwt);
-        this.router.navigate(['/']);
+      .subscribe(token => {
+        this.cookieService.set('user_token', token.value, {path: '/', expires: new Date().getDate() + 7});
+        this.redirectToHome();
       }, error => {
         console.error(error);
-        this.router.navigate(['/']);
+        this.userName.setValue(user.userName);
+        this.password.setValue('');
+        this.haveFirstAttempt = true;
       });
   }
 
-  public register() {
-    return undefined;
+  // Helpers.
+
+  private setupForm() {
+    this.formGroup = new FormGroup({
+      userName: new FormControl(this.user.userName, [
+        Validators.required,
+        Validators.pattern('^([^\\s]*)$')
+      ]),
+      password: new FormControl(this.user.password, [
+        Validators.required,
+        Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')
+      ])
+    }, {validators: unauthorizedValidator});
+  }
+
+  private redirectToHome() {
+    this.router.navigate(['/']);
   }
 }

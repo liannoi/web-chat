@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using WebChat.Application.API.Common.Identity;
 
-namespace WebChat.Presentation.API.Services
+namespace WebChat.Presentation.API.Common.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
@@ -22,19 +22,15 @@ namespace WebChat.Presentation.API.Services
 
         private string ReadToken(StringValues stream)
         {
-            var trimmedStream = stream.ToString().Replace("Bearer ", string.Empty);
-
-            JwtSecurityToken token;
             try
             {
-                token = new JwtSecurityTokenHandler().ReadJwtToken(trimmedStream);
+                return new JwtSecurityTokenHandler().ReadJwtToken(stream.ToString().Replace("Bearer ", string.Empty))
+                    .Subject;
             }
             catch (ArgumentException)
             {
                 throw new UnauthorizedAccessException();
             }
-
-            return token.Subject;
         }
     }
 }

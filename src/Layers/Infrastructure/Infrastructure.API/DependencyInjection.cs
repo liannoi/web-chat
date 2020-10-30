@@ -8,9 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
 using WebChat.Infrastructure.API.Identity;
-using WebChat.Infrastructure.API.Identity.Common.Models;
-using WebChat.Infrastructure.API.Identity.Describers;
-using WebChat.Infrastructure.API.Identity.Services;
+using WebChat.Infrastructure.API.Identity.Server;
 using WebChat.Infrastructure.API.Persistence;
 
 namespace WebChat.Infrastructure.API
@@ -30,9 +28,7 @@ namespace WebChat.Infrastructure.API
             services.AddDbContext<WebChatIdentityContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase)));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<WebChatIdentityContext>()
-                .AddErrorDescriber<ErrorDescriber>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<WebChatIdentityContext>();
 
             services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();

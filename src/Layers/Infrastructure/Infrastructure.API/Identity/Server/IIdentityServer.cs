@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace WebChat.Infrastructure.API.Identity.Common.Server
+namespace WebChat.Infrastructure.API.Identity.Server
 {
     public interface IIdentityServer
     {

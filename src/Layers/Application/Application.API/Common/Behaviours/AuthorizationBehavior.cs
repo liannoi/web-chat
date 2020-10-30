@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MediatR;
 using WebChat.Application.API.Common.Exceptions;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Application.API.Common.Security;
 
 namespace WebChat.Application.API.Common.Behaviours
 {

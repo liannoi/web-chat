@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using WebChat.Application.API.Common.Exceptions;
 
-namespace WebChat.Presentation.API.Filters
+namespace WebChat.Presentation.API.Common.Filters
 {
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {

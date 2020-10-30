@@ -21,8 +21,4 @@
         <ProjectReference Include="..\..\Domain\Domain.API\WebChat.Domain.API.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Identity\Common" />
-    </ItemGroup>
-
 </Project>

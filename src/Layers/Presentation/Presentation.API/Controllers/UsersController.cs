@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Users.Identity.Commands.Login;
@@ -15,9 +16,16 @@ namespace WebChat.Presentation.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<JwtToken>> Login([FromBody] LoginCommand command)
+        public async Task<IActionResult> Login([FromBody] LoginCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return Unauthorized(e.Message);
+            }
         }
     }
 }
