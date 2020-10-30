@@ -1,25 +1,23 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {AuthService} from '../auth.service';
-import {LoginModel} from '../common/models/login.model';
-import {unauthorizedValidator} from '../common/validators/unauthorized.validator';
-import {ApplicationPaths} from '../../../app/app.constants';
+import {RegisterModel} from '../common/models/register.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit, OnDestroy {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
-  public paths = ApplicationPaths;
-  private user: LoginModel = {userName: '', password: ''};
+  public identityError = '';
+  private user: RegisterModel = {userName: '', password: ''};
   private stop$: Subject<void> = new Subject<void>();
 
   public constructor(private authService: AuthService, private router: Router) {
@@ -42,14 +40,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.stop$.complete();
   }
 
-  public login() {
+  public signup() {
     if (!this.formGroup.valid) {
       return;
     }
 
-    this.user = this.formGroup.getRawValue() as LoginModel;
+    this.user = this.formGroup.getRawValue() as RegisterModel;
 
-    this.authService.login(this.user)
+    this.authService.signup(this.user)
       .pipe(takeUntil(this.stop$))
       .subscribe(token => {
         this.authService.writeToken(token);
@@ -59,6 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userName.setValue(this.user.userName);
         this.password.setValue('');
         this.haveFirstAttempt = true;
+        this.identityError = error;
+        this.formGroup.setErrors({identity: true});
       });
   }
 
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')
       ])
-    }, {validators: unauthorizedValidator});
+    });
   }
 
   private redirectToHome() {

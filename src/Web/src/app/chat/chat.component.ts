@@ -26,9 +26,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.authService.verify(this.authService.readToken())
+    this.authService.verify()
       .pipe(takeUntil(this.stop$))
       .subscribe(user => console.log(user), error => {
+        this.authService.clearToken();
         console.error(error);
         this.redirectToLogin();
       });

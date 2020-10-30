@@ -6,6 +6,8 @@ interface ApplicationPaths {
   readonly App: string;
   readonly Login: string;
   readonly Signup: string;
+  readonly Profile: string;
+  readonly Logout: string;
 }
 
 const applicationPaths: ApplicationPaths = {
@@ -13,6 +15,8 @@ const applicationPaths: ApplicationPaths = {
   App: `app`,
   Login: `auth/login`,
   Signup: `auth/signup`,
+  Profile: `profile`,
+  Logout: `auth/logout`,
 };
 
 export const ApplicationPaths: ApplicationPaths = applicationPaths;

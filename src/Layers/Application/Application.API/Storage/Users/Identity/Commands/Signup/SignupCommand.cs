@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -22,7 +23,10 @@ namespace WebChat.Application.API.Storage.Users.Identity.Commands.Signup
 
             public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
-                return (await _identityService.CreateUserAsync(request.UserName, request.Password)).Token;
+                var (result, token) = await _identityService.CreateUserAsync(request.UserName, request.Password);
+                if (!result.Succeeded) throw new UnauthorizedAccessException(result.Errors[0]);
+
+                return token;
             }
         }
     }

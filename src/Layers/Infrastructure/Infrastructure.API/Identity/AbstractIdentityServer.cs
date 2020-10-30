@@ -31,7 +31,7 @@ namespace WebChat.Infrastructure.API.Identity
                 var token = new JwtSecurityTokenHandler().ReadJwtToken(stream.ToString()
                     .Replace("Bearer ", string.Empty));
 
-                if (token.ValidTo <= DateTime.Now) throw new UnauthorizedAccessException();
+                if (token.ValidTo.AddHours(2) <= DateTime.Now) throw new UnauthorizedAccessException();
 
                 return token.Subject;
             }

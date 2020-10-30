@@ -13,7 +13,14 @@ namespace WebChat.Presentation.API.Controllers
         [HttpPost("signup")]
         public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return Unauthorized(e.Message);
+            }
         }
 
         [HttpPost("login")]

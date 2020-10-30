@@ -20,21 +20,34 @@
                class="nav-link font-weight-bold">API</a>
           </li>
         </ul>
-
         <hr>
-
-        <ul class="navbar-nav ml-auto">
+        <ul *ngIf="verifiedToken(); else unverifiedToken" class="navbar-nav ml-auto">
           <li class="nav-item mr-2">
-            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Login]"
-               class="nav-link font-weight-bold">Sign in</a>
+            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Profile]"
+               class="nav-link font-weight-bold">Profile</a>
           </li>
 
           <li class="nav-item">
-            <a [routerLinkActive]="['active']" [routerLink]="[paths.Signup]"
-               class="nav-link font-weight-bold">Sign up</a>
+            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Logout]"
+               class="nav-link font-weight-bold">Logout</a>
           </li>
         </ul>
+        <ng-tempalte #unverifiedToken>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+              <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Login]"
+                 class="nav-link font-weight-bold">Sign in</a>
+            </li>
+
+            <li class="nav-item">
+              <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Signup]"
+                 class="nav-link font-weight-bold">Sign up</a>
+            </li>
+          </ul>
+        </ng-tempalte>
       </div>
     </div>
   </nav>
 </header>
+
+
