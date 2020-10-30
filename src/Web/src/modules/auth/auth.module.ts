@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -7,7 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
 
 import {LoginComponent} from './login/login.component';
-import {ApplicationPaths} from './auth.constants';
+import {ApplicationPaths} from '../../app/app.constants';
 import {AuthService} from './auth.service';
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [LoginComponent],
   imports: [
-    CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)

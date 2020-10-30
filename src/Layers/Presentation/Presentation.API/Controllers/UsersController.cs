@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Users.Identity.Commands.Login;
 using WebChat.Application.API.Storage.Users.Identity.Commands.Signup;
+using WebChat.Application.API.Storage.Users.Identity.Commands.Verify;
 using WebChat.Application.API.Storage.Users.Identity.Models;
 
 namespace WebChat.Presentation.API.Controllers
@@ -17,6 +18,19 @@ namespace WebChat.Presentation.API.Controllers
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)
+        {
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return Unauthorized(e.Message);
+            }
+        }
+
+        [HttpPost("verify")]
+        public async Task<IActionResult> Verify([FromBody] VerifyCommand command)
         {
             try
             {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Storage.Users.Identity.Models;
-using WebChat.Infrastructure.API.Identity.Server;
+using WebChat.Domain.API.Entities.Identity;
 using IdentityResult = WebChat.Application.API.Common.Identity.IdentityResult;
 
 namespace WebChat.Infrastructure.API.Identity
@@ -37,6 +37,11 @@ namespace WebChat.Infrastructure.API.Identity
             return (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)});
         }
 
+        public async Task<ApplicationUser> GetUserAsync(string userName)
+        {
+            return await _manager.FindByNameAsync(userName);
+        }
+
         public async Task<bool> UserIsInRole(string userId, string role)
         {
             var user = await GetUserAsync(userId);
@@ -54,7 +59,7 @@ namespace WebChat.Infrastructure.API.Identity
 
         public async Task<IdentityResult> DeleteUserAsync(string userId)
         {
-            var user = await GetUserAsync(userId);
+            var user = await GetUserByIdAsync(userId);
 
             if (user != null) return await DeleteUserAsync(user);
 
@@ -63,7 +68,7 @@ namespace WebChat.Infrastructure.API.Identity
 
         // Helpers.
 
-        private async Task<ApplicationUser> GetUserAsync(string userId)
+        private async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
             return await _manager.Users.SingleOrDefaultAsync(u => u.Id == userId);
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -7,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
+using WebChat.Domain.API.Entities.Identity;
 using WebChat.Infrastructure.API.Identity;
-using WebChat.Infrastructure.API.Identity.Server;
 using WebChat.Infrastructure.API.Persistence;
 
 namespace WebChat.Infrastructure.API
@@ -48,7 +49,8 @@ namespace WebChat.Infrastructure.API
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = appSettings.Issuer,
                         ValidAudience = appSettings.Issuer,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Secret))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Secret)),
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 

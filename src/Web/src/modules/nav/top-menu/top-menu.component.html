@@ -1,0 +1,40 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-light box-shadow">
+    <div class="container">
+      <a [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="['text-success']" [routerLink]="['/']"
+         class="navbar-brand font-weight-bold">Home</a>
+
+      <button (click)="isExpanded = !isExpanded" class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div [ngbCollapse]="isExpanded" class="navbar-collapse collapse d-sm-inline-flex">
+        <ul class="navbar-nav">
+          <li class="nav-item mr-2">
+            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.App]"
+               class="nav-link font-weight-bold">App</a>
+          </li>
+
+          <li class="nav-item">
+            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Api]"
+               class="nav-link font-weight-bold">API</a>
+          </li>
+        </ul>
+
+        <hr>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-2">
+            <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Login]"
+               class="nav-link font-weight-bold">Sign in</a>
+          </li>
+
+          <li class="nav-item">
+            <a [routerLinkActive]="['active']" [routerLink]="[paths.Signup]"
+               class="nav-link font-weight-bold">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

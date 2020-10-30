@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace WebChat.Infrastructure.API.Identity
+namespace WebChat.Domain.API.Entities.Identity
 {
     public class ApplicationUser : IdentityUser
     {

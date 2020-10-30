@@ -7,10 +7,14 @@ export const ApiControllers = {
 
 interface ApiEndpoints {
   readonly UsersLogin: string;
+  readonly UsersVerify: string;
 }
 
+const UsersEndpoint = `${ApiBaseAddress}/${ApiControllers.Users}`;
+
 const apiEndpoints: ApiEndpoints = {
-  UsersLogin: `${ApiBaseAddress}/${ApiControllers.Users}/login`,
+  UsersLogin: `${UsersEndpoint}/login`,
+  UsersVerify: `${UsersEndpoint}/verify`,
 };
 
 export const ApiEndpoints: ApiEndpoints = apiEndpoints;

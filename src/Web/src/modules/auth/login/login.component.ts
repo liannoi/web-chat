@@ -4,10 +4,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {CookieService} from 'ngx-cookie-service';
 
 import {AuthService} from '../auth.service';
-import {UserModel} from '../common/models/user.model';
+import {LoginModel} from '../common/models/login.model';
 import {unauthorizedValidator} from '../common/validators/unauthorized.validator';
 
 @Component({
@@ -18,11 +17,10 @@ import {unauthorizedValidator} from '../common/validators/unauthorized.validator
 export class LoginComponent implements OnInit, OnDestroy {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
-  private user: UserModel;
-  private $stop: Subject<void> = new Subject<void>();
+  private user: LoginModel = {userName: '', password: ''};
+  private stop$: Subject<void> = new Subject<void>();
 
-  public constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {
-    this.user = {userName: '', password: ''};
+  public constructor(private authService: AuthService, private router: Router) {
   }
 
   get userName() {
@@ -38,8 +36,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.$stop.next();
-    this.$stop.complete();
+    this.stop$.next();
+    this.stop$.complete();
   }
 
   public login() {
@@ -47,12 +45,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const user = this.formGroup.getRawValue() as UserModel;
+    const user = this.formGroup.getRawValue() as LoginModel;
 
     this.authService.login(user)
-      .pipe(takeUntil(this.$stop))
+      .pipe(takeUntil(this.stop$))
       .subscribe(token => {
-        this.cookieService.set('user_token', token.value, {path: '/', expires: new Date().getDate() + 7});
+        this.authService.writeToken(token);
         this.redirectToHome();
       }, error => {
         console.error(error);

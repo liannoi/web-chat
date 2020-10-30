@@ -1,20 +1,26 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AuthModule} from './auth/auth.module';
+import {AuthModule} from '../modules/auth/auth.module';
 import {HomeComponent} from './home/home.component';
+import {NavModule} from '../modules/nav/nav.module';
+import {ApiComponent} from './api/api.component';
+import {ChatComponent} from './chat/chat.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ApiComponent,
+    ChatComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    AuthModule
+    AuthModule,
+    NavModule
   ],
   bootstrap: [AppComponent]
 })

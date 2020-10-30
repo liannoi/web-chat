@@ -4,9 +4,11 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
+using WebChat.Application.API.Common.Identity;
 
-namespace WebChat.Infrastructure.API.Identity.Server
+namespace WebChat.Infrastructure.API.Identity
 {
     public abstract class AbstractIdentityServer : IIdentityServer
     {
@@ -20,6 +22,23 @@ namespace WebChat.Infrastructure.API.Identity.Server
         public string CreateToken<TUser>(TUser user) where TUser : IdentityUser
         {
             return new JwtSecurityTokenHandler().WriteToken(PrepareToken(user));
+        }
+
+        public string ReadToken(StringValues stream)
+        {
+            try
+            {
+                var token = new JwtSecurityTokenHandler().ReadJwtToken(stream.ToString()
+                    .Replace("Bearer ", string.Empty));
+
+                if (token.ValidTo <= DateTime.Now) throw new UnauthorizedAccessException();
+
+                return token.Subject;
+            }
+            catch (ArgumentException)
+            {
+                throw new UnauthorizedAccessException();
+            }
         }
 
         private JwtSecurityToken PrepareToken(IdentityUser user)

@@ -4,12 +4,12 @@ import {Title} from '@angular/platform-browser';
 import {ApplicationName} from '../app.constants';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-api',
+  templateUrl: './api.component.html',
+  styleUrls: ['./api.component.css']
 })
-export class HomeComponent {
+export class ApiComponent {
   public constructor(private titleService: Title) {
-    titleService.setTitle(ApplicationName);
+    titleService.setTitle(`${ApplicationName} APIs`);
   }
 }

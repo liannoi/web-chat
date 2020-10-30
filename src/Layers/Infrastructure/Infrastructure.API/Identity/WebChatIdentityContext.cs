@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebChat.Domain.API.Entities.Identity;
 
 namespace WebChat.Infrastructure.API.Identity
 {
