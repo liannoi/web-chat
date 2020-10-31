@@ -13,9 +13,9 @@ import {FooterComponent} from './footer/footer.component';
     FooterComponent
   ],
   imports: [
+    CommonModule,
     RouterModule,
-    NgbModule,
-    CommonModule
+    NgbModule
   ],
   exports: [
     TopMenuComponent,

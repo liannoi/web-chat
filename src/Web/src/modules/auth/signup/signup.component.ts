@@ -1,12 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {AuthService} from '../auth.service';
 import {RegisterModel} from '../common/models/register.model';
+import {ApplicationName} from '../../../app/app.constants';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +22,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   private user: RegisterModel = {userName: '', password: ''};
   private stop$: Subject<void> = new Subject<void>();
 
-  public constructor(private authService: AuthService, private router: Router) {
+  public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
+    titleService.setTitle(`Join ${ApplicationName}`);
   }
 
   get userName() {

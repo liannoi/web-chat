@@ -17,15 +17,18 @@ export class AuthService {
   }
 
   public login(user: LoginModel): Observable<JwtTokenModel> {
-    return this.http.post<JwtTokenModel>(ApiEndpoints.UsersLogin, user).pipe(catchError(this.handleError));
+    return this.http.post<JwtTokenModel>(ApiEndpoints.UsersLogin, user)
+      .pipe(catchError(this.handleError));
   }
 
   public signup(user: RegisterModel): Observable<JwtTokenModel> {
-    return this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignup, user).pipe(catchError(this.handleIdentityError));
+    return this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignup, user)
+      .pipe(catchError(this.handleIdentityError));
   }
 
   public verify(token: JwtTokenModel = this.readToken()): Observable<LoginModel> {
-    return this.http.post<LoginModel>(ApiEndpoints.UsersVerify, token, this.authorize(token)).pipe(catchError(this.handleError));
+    return this.http.post<LoginModel>(ApiEndpoints.UsersVerify, token, this.authorize(token))
+      .pipe(catchError(this.handleError));
   }
 
   public checkToken(): boolean {

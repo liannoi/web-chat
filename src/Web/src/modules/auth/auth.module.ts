@@ -10,16 +10,20 @@ import {LoginComponent} from './login/login.component';
 import {ApplicationPaths} from '../../app/app.constants';
 import {AuthService} from './auth.service';
 import {SignupComponent} from './signup/signup.component';
+import {LogoutComponent} from './logout/logout.component';
+import {TokenVerifierService} from './common/services/token-verifier.service';
 
 const routes: Routes = [
   {path: ApplicationPaths.Login, component: LoginComponent},
-  {path: ApplicationPaths.Signup, component: SignupComponent}
+  {path: ApplicationPaths.Signup, component: SignupComponent},
+  {path: ApplicationPaths.Logout, component: LogoutComponent}
 ];
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
@@ -29,11 +33,13 @@ const routes: Routes = [
   ],
   exports: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   providers: [
     AuthService,
-    CookieService
+    CookieService,
+    TokenVerifierService
   ],
 })
 export class AuthModule {

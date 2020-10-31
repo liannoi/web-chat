@@ -8,13 +8,15 @@ import {HomeComponent} from './home/home.component';
 import {NavModule} from '../modules/nav/nav.module';
 import {ApiComponent} from './api/api.component';
 import {ChatComponent} from './chat/chat.component';
+import {ProfileComponent} from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ApiComponent,
-    ChatComponent
+    ChatComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

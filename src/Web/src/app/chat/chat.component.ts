@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-import {ApplicationName} from '../app.constants';
+import {ApplicationName, ApplicationPaths} from '../app.constants';
 import {AuthService} from '../../modules/auth/auth.service';
 
 @Component({
@@ -17,10 +17,25 @@ export class ChatComponent implements OnInit, OnDestroy {
   private stop$: Subject<void> = new Subject<void>();
 
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
-    titleService.setTitle(ApplicationName);
+    titleService.setTitle(`${ApplicationName} App`);
   }
 
   public ngOnInit() {
+    this.verifyToken();
+  }
+
+  public ngOnDestroy() {
+    this.stop$.next();
+    this.stop$.complete();
+  }
+
+  // Helpers.
+
+  private redirectToLogin() {
+    this.router.navigate([ApplicationPaths.Login]);
+  }
+
+  private verifyToken() {
     if (!this.authService.checkToken()) {
       this.redirectToLogin();
       return;
@@ -33,16 +48,5 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.error(error);
         this.redirectToLogin();
       });
-  }
-
-  public ngOnDestroy() {
-    this.stop$.next();
-    this.stop$.complete();
-  }
-
-  // Helpers.
-
-  private redirectToLogin() {
-    this.router.navigate(['auth/login']);
   }
 }

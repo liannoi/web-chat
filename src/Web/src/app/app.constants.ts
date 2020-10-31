@@ -2,6 +2,7 @@ export const ApplicationName = 'Web Chat';
 export const UserJwtTokenName = 'user_token';
 
 interface ApplicationPaths {
+  readonly Home: string;
   readonly Api: string;
   readonly App: string;
   readonly Login: string;
@@ -11,6 +12,7 @@ interface ApplicationPaths {
 }
 
 const applicationPaths: ApplicationPaths = {
+  Home: `/`,
   Api: `api`,
   App: `app`,
   Login: `auth/login`,

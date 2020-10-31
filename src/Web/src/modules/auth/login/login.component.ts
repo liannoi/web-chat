@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Title} from '@angular/platform-browser';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
@@ -8,7 +9,7 @@ import {takeUntil} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
 import {LoginModel} from '../common/models/login.model';
 import {unauthorizedValidator} from '../common/validators/unauthorized.validator';
-import {ApplicationPaths} from '../../../app/app.constants';
+import {ApplicationName, ApplicationPaths} from '../../../app/app.constants';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private user: LoginModel = {userName: '', password: ''};
   private stop$: Subject<void> = new Subject<void>();
 
-  public constructor(private authService: AuthService, private router: Router) {
+  public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
+    titleService.setTitle(`Sign in to ${ApplicationName}`);
   }
 
   get userName() {

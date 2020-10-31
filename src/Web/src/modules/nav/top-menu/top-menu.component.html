@@ -32,22 +32,21 @@
                class="nav-link font-weight-bold">Logout</a>
           </li>
         </ul>
-        <ng-tempalte #unverifiedToken>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mr-2">
-              <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Login]"
-                 class="nav-link font-weight-bold">Sign in</a>
-            </li>
-
-            <li class="nav-item">
-              <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Signup]"
-                 class="nav-link font-weight-bold">Sign up</a>
-            </li>
-          </ul>
-        </ng-tempalte>
       </div>
     </div>
   </nav>
 </header>
 
+<ng-template #unverifiedToken>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item mr-2">
+      <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Login]"
+         class="nav-link font-weight-bold">Sign in</a>
+    </li>
 
+    <li class="nav-item">
+      <a [routerLinkActive]="['text-success']" [routerLink]="[paths.Signup]"
+         class="nav-link font-weight-bold">Sign up</a>
+    </li>
+  </ul>
+</ng-template>
