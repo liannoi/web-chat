@@ -5,8 +5,8 @@ import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-import {ApplicationName, ApplicationPaths} from '../app.constants';
-import {AuthService} from '../../modules/auth/auth.service';
+import {ApplicationNamings, ApplicationPaths} from '../app.constants';
+import {AuthService} from '../auth/shared/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   private stop$: Subject<void> = new Subject<void>();
 
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
-    titleService.setTitle(`${ApplicationName} App`);
+    titleService.setTitle(`${ApplicationNamings.Application} App`);
   }
 
   public ngOnInit() {
@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private verifyToken() {
-    if (!this.authService.checkToken()) {
+    /*if (!this.authService.checkToken()) {
       this.redirectToLogin();
       return;
     }
@@ -47,6 +47,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.authService.clearToken();
         console.error(error);
         this.redirectToLogin();
-      });
+      });*/
   }
 }

@@ -1,17 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {HomeComponent} from './home/home.component';
-import {ApiComponent} from './api/api.component';
-import {ChatComponent} from './chat/chat.component';
-import {ProfileComponent} from './profile/profile.component';
 import {ApplicationPaths} from './app.constants';
+import {HomeComponent} from './shared/home/home.component';
+import {DocsApiComponent} from './shared/docs-api/docs-api.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path: ApplicationPaths.Api, component: ApiComponent},
-  {path: ApplicationPaths.App, component: ChatComponent},
-  {path: ApplicationPaths.Profile, component: ProfileComponent}
+  {path: ApplicationPaths.Home, component: HomeComponent, pathMatch: 'full'},
+  {path: ApplicationPaths.Api, component: DocsApiComponent}
 ];
 
 @NgModule({

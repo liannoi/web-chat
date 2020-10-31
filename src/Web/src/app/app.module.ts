@@ -1,28 +1,40 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 
-import {AppRoutingModule} from './app-routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import {AppComponent} from './app.component';
-import {AuthModule} from '../modules/auth/auth.module';
-import {HomeComponent} from './home/home.component';
-import {NavModule} from '../modules/nav/nav.module';
-import {ApiComponent} from './api/api.component';
-import {ChatComponent} from './chat/chat.component';
-import {ProfileComponent} from './profile/profile.component';
+import {HomeComponent} from './shared/home/home.component';
+import {DocsApiComponent} from './shared/docs-api/docs-api.component';
+import {AppRoutingModule} from './app-routing.module';
+import {NavFooterComponent} from './shared/nav-footer/nav-footer.component';
+import {NavTopMenuComponent} from './shared/nav-top-menu/nav-top-menu.component';
+import {AuthModule} from './auth/auth.module';
+import {ChatModule} from './chat/chat.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ApiComponent,
-    ChatComponent,
-    ProfileComponent
+    DocsApiComponent,
+    NavTopMenuComponent,
+    NavFooterComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     AuthModule,
-    NavModule
+    ChatModule
+  ],
+  exports: [
+    AppComponent,
+    HomeComponent,
+    DocsApiComponent,
+    NavTopMenuComponent,
+    NavFooterComponent
   ],
   bootstrap: [AppComponent]
 })
