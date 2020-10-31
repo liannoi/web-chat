@@ -3,29 +3,31 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-
-import {AuthService} from '../shared/auth.service';
-import {UserModel} from '../shared/user.model';
-import {unauthorizedValidator} from '../shared/unauthorized.validator';
+import {UserModel} from '../shared/models/user.model';
+import {unauthorizedValidator} from '../shared/validators/unauthorized.validator';
 import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
+import {JwtTokenModel} from '../shared/models/jwt-token.model';
+import {LoginCommand, OnLogin} from '../shared/commands/login-command.model';
+import {AuthService} from '../../core/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy, OnLogin {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
   public paths = ApplicationPaths;
   private user: UserModel = {userName: '', password: ''};
-  private stop$: Subject<void> = new Subject<void>();
 
   public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
     titleService.setTitle(`Sign in to ${ApplicationNamings.Application}`);
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Getters for the form
+  ///////////////////////////////////////////////////////////////////////////
 
   get userName() {
     return this.formGroup.get('userName');
@@ -35,14 +37,33 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.formGroup.get('password');
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Event handlers
+  ///////////////////////////////////////////////////////////////////////////
+
   public ngOnInit() {
     this.setupForm();
   }
 
-  public ngOnDestroy() {
-    this.stop$.next();
-    this.stop$.complete();
+  public onLoginSuccess(token: JwtTokenModel): void {
+    this.authService.writeToken(token);
+    this.router.navigate(['/']);
   }
+
+  public onLoginFailed(error: any): void {
+    console.error(error);
+    this.userName.setValue(this.user.userName);
+    this.password.setValue('');
+    this.haveFirstAttempt = true;
+  }
+
+  public ngOnDestroy() {
+    this.authService.onDispose();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Basic methods
+  ///////////////////////////////////////////////////////////////////////////
 
   public login() {
     if (!this.formGroup.valid) {
@@ -50,21 +71,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     this.user = this.formGroup.getRawValue() as UserModel;
-
-    this.authService.login(this.user)
-      .pipe(takeUntil(this.stop$))
-      .subscribe(token => {
-        this.authService.writeToken(token);
-        this.redirectToHome();
-      }, error => {
-        console.error(error);
-        this.userName.setValue(this.user.userName);
-        this.password.setValue('');
-        this.haveFirstAttempt = true;
-      });
+    this.authService.login(new LoginCommand(this.user), this);
   }
 
-  // Helpers.
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
 
   private setupForm() {
     this.formGroup = new FormGroup({
@@ -77,9 +89,5 @@ export class LoginComponent implements OnInit, OnDestroy {
         Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')
       ])
     }, {validators: unauthorizedValidator});
-  }
-
-  private redirectToHome() {
-    this.router.navigate(['/']);
   }
 }

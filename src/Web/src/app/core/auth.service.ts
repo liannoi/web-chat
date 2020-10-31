@@ -5,14 +5,17 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 
-import {ApiEndpoints} from '../../core/api/api.constants';
-import {UserModel} from './user.model';
-import {JwtTokenModel} from './jwt-token.model';
-import {ApplicationNamings} from '../../app.constants';
+import {ApiEndpoints} from './api.constants';
+import {UserModel} from '../auth/shared/models/user.model';
+import {JwtTokenModel} from '../auth/shared/models/jwt-token.model';
+import {ApplicationNamings} from '../app.constants';
+import {LoginCommand, OnLogin} from '../auth/shared/commands/login-command.model';
+import {OnSignup, SignupCommand} from '../auth/shared/commands/signup-command.model';
+import {OnVerified, VerifyCommand} from '../auth/shared/commands/verify-command.model';
 
 @Injectable()
 export class AuthService implements OnDispose {
-  public stop$: Subject<void> = new Subject<void>();
+  private stop$: Subject<void> = new Subject<void>();
 
   public constructor(private http: HttpClient, private cookieService: CookieService) {
   }
@@ -21,9 +24,11 @@ export class AuthService implements OnDispose {
   // Commands
   ///////////////////////////////////////////////////////////////////////////
 
-  public login(user: UserModel): Observable<JwtTokenModel> {
-    return this.http.post<JwtTokenModel>(ApiEndpoints.UsersLogin, user)
-      .pipe(catchError(this.handleError));
+  public login(request: LoginCommand, handler: OnLogin) {
+    this.http.post<JwtTokenModel>(ApiEndpoints.UsersLogin, request.user)
+      .pipe(catchError(this.handleError))
+      .pipe(takeUntil(this.stop$))
+      .subscribe(token => handler.onLoginSuccess(token), error => handler.onLoginFailed(error));
   }
 
   public signup(request: SignupCommand, handler: OnSignup) {
@@ -36,7 +41,7 @@ export class AuthService implements OnDispose {
   public verify(request: VerifyCommand, handler: OnVerified) {
     const token = request.token;
 
-    return this.http.post<UserModel>(ApiEndpoints.UsersVerify, token, this.authorize(token))
+    this.http.post<UserModel>(ApiEndpoints.UsersVerify, token, this.authorize(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => handler.onVerifiedSuccess(user), error => handler.onVerifiedFailed(error));
@@ -103,34 +108,4 @@ export class AuthService implements OnDispose {
 
 export interface OnDispose {
   onDispose(): void;
-}
-
-///////////////////////////////////////////////////////////////////////////
-// Signup Command
-///////////////////////////////////////////////////////////////////////////
-
-export class SignupCommand {
-  public constructor(public user: UserModel) {
-  }
-}
-
-export interface OnSignup {
-  onSignupSuccess(token: JwtTokenModel): void;
-
-  onSignupFailed(error: any): void;
-}
-
-///////////////////////////////////////////////////////////////////////////
-// Verify Command
-///////////////////////////////////////////////////////////////////////////
-
-export class VerifyCommand {
-  public constructor(public token: JwtTokenModel) {
-  }
-}
-
-export interface OnVerified {
-  onVerifiedSuccess(token: UserModel): void;
-
-  onVerifiedFailed(error: any): void;
 }

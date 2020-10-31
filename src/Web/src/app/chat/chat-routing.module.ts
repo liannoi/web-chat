@@ -5,7 +5,7 @@ import {ApplicationPaths} from '../app.constants';
 import {ChatComponent} from './chat.component';
 
 const routes: Routes = [
-  {path: ApplicationPaths.App, component: ChatComponent}
+  {path: ApplicationPaths.Chat, component: ChatComponent}
 ];
 
 @NgModule({

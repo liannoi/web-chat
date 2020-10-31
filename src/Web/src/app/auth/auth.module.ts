@@ -6,7 +6,7 @@ import {CommonModule} from '@angular/common';
 import {CookieService} from 'ngx-cookie-service';
 
 import {LoginComponent} from './login/login.component';
-import {AuthService} from './shared/auth.service';
+import {AuthService} from '../core/auth.service';
 import {SignupComponent} from './signup/signup.component';
 import {LogoutComponent} from './logout/logout.component';
 import {AuthRoutingModule} from './auth-routing.module';

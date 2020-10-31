@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
-import {AuthService, OnVerified, VerifyCommand} from '../shared/auth.service';
-import {UserModel} from '../shared/user.model';
+
+import {AuthService} from '../../core/auth.service';
+import {UserModel} from '../shared/models/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
+import {OnVerified, VerifyCommand} from '../shared/commands/verify-command.model';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +17,10 @@ export class ProfileComponent implements OnInit, OnDestroy, OnVerified {
     titleService.setTitle(`Your profile - ${ApplicationNamings.Application}`);
   }
 
+  public ngOnInit() {
+    this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
+  }
+
   public onVerifiedSuccess(token: UserModel): void {
     console.log(token);
   }
@@ -23,10 +29,6 @@ export class ProfileComponent implements OnInit, OnDestroy, OnVerified {
     console.error(error);
     this.authService.clearToken();
     this.router.navigate([ApplicationPaths.Home]);
-  }
-
-  public ngOnInit() {
-    this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
   }
 
   public ngOnDestroy() {

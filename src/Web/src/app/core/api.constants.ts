@@ -1,16 +1,10 @@
-const BaseAddress = 'https://localhost:5001';
-const ApiBaseAddress = `${BaseAddress}/api`;
-
-const ApiControllers = {
-  Users: 'users'
-};
-
-const UsersEndpoint = `${ApiBaseAddress}/${ApiControllers.Users}`;
+const BaseApiAddress = 'https://localhost:5001/api';
+const UsersEndpoint = `${BaseApiAddress}/users`;
 
 const apiEndpoints: ApiEndpoints = {
   UsersLogin: `${UsersEndpoint}/login`,
   UsersVerify: `${UsersEndpoint}/verify`,
-  UsersSignup: `${UsersEndpoint}/signup`,
+  UsersSignup: `${UsersEndpoint}/signup`
 };
 
 interface ApiEndpoints {

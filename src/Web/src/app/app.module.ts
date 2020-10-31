@@ -12,6 +12,7 @@ import {NavFooterComponent} from './shared/nav-footer/nav-footer.component';
 import {NavTopMenuComponent} from './shared/nav-top-menu/nav-top-menu.component';
 import {AuthModule} from './auth/auth.module';
 import {ChatModule} from './chat/chat.module';
+import {StatusNotFoundComponent} from './shared/status-not-found/status-not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,22 +20,24 @@ import {ChatModule} from './chat/chat.module';
     HomeComponent,
     DocsApiComponent,
     NavTopMenuComponent,
-    NavFooterComponent
+    NavFooterComponent,
+    StatusNotFoundComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     NgbModule,
-    AppRoutingModule,
     AuthModule,
-    ChatModule
+    ChatModule,
+    AppRoutingModule
   ],
   exports: [
     AppComponent,
     HomeComponent,
     DocsApiComponent,
     NavTopMenuComponent,
-    NavFooterComponent
+    NavFooterComponent,
+    StatusNotFoundComponent
   ],
   bootstrap: [AppComponent]
 })

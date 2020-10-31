@@ -2,51 +2,36 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-
 import {ApplicationNamings, ApplicationPaths} from '../app.constants';
-import {AuthService} from '../auth/shared/auth.service';
+import {AuthService} from '../core/auth.service';
+import {OnVerified, VerifyCommand} from '../auth/shared/commands/verify-command.model';
+import {UserModel} from '../auth/shared/models/user.model';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit, OnDestroy {
-  private stop$: Subject<void> = new Subject<void>();
-
+export class ChatComponent implements OnInit, OnDestroy, OnVerified {
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
     titleService.setTitle(`${ApplicationNamings.Application} App`);
   }
 
   public ngOnInit() {
-    this.verifyToken();
+    this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
   }
 
-  public ngOnDestroy() {
-    this.stop$.next();
-    this.stop$.complete();
+  public onVerifiedSuccess(user: UserModel): void {
+    console.log(user);
   }
 
-  // Helpers.
-
-  private redirectToLogin() {
+  public onVerifiedFailed(error: any): void {
+    console.error(error);
+    this.authService.clearToken();
     this.router.navigate([ApplicationPaths.Login]);
   }
 
-  private verifyToken() {
-    /*if (!this.authService.checkToken()) {
-      this.redirectToLogin();
-      return;
-    }
-
-    this.authService.verify()
-      .pipe(takeUntil(this.stop$))
-      .subscribe(user => console.log(user), error => {
-        this.authService.clearToken();
-        console.error(error);
-        this.redirectToLogin();
-      });*/
+  public ngOnDestroy() {
+    this.authService.onDispose();
   }
 }

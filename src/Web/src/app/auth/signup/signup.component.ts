@@ -3,10 +3,11 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
-import {AuthService, OnSignup, SignupCommand} from '../shared/auth.service';
-import {UserModel} from '../shared/user.model';
+import {AuthService} from '../../core/auth.service';
+import {UserModel} from '../shared/models/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
-import {JwtTokenModel} from '../shared/jwt-token.model';
+import {JwtTokenModel} from '../shared/models/jwt-token.model';
+import {OnSignup, SignupCommand} from '../shared/commands/signup-command.model';
 
 @Component({
   selector: 'app-signup',
