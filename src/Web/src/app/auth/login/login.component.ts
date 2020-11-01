@@ -3,12 +3,11 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 
-import {UserModel} from '../shared/models/user.model';
-import {unauthorizedValidator} from '../shared/validators/unauthorized.validator';
+import {UserModel} from '../shared/user.model';
+import {unauthorizedValidator} from '../shared/unauthorized.validator';
 import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
-import {JwtTokenModel} from '../shared/models/jwt-token.model';
-import {LoginCommand, OnLogin} from '../shared/commands/login-command.model';
-import {AuthService} from '../../core/auth.service';
+import {JwtTokenModel} from '../shared/jwt-token.model';
+import {AuthService, LoginCommand, OnLogin} from '../../core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
   public paths = ApplicationPaths;
-  private user: UserModel = {userName: '', password: ''};
+  private user: UserModel = new UserModel();
 
   public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
     titleService.setTitle(`Sign in to ${ApplicationNamings.Application}`);
@@ -29,8 +28,8 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
   // Getters for the form
   ///////////////////////////////////////////////////////////////////////////
 
-  get userName() {
-    return this.formGroup.get('userName');
+  get username() {
+    return this.formGroup.get('username');
   }
 
   get password() {
@@ -52,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
 
   public onLoginFailed(error: any): void {
     console.error(error);
-    this.userName.setValue(this.user.userName);
+    this.username.setValue(this.user.username);
     this.password.setValue('');
     this.haveFirstAttempt = true;
   }
@@ -80,7 +79,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
 
   private setupForm() {
     this.formGroup = new FormGroup({
-      userName: new FormControl(this.user.userName, [
+      username: new FormControl(this.user.username, [
         Validators.required,
         Validators.pattern('^([^\\s]*)$')
       ]),

@@ -18,92 +18,13 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
             {
-                b.Property<string>("UserCode")
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<string>("ClientId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<DateTime>("CreationTime")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("Data")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)")
-                    .HasMaxLength(50000);
-
-                b.Property<string>("DeviceCode")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<DateTime?>("Expiration")
-                    .IsRequired()
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("SubjectId")
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.HasKey("UserCode");
-
-                b.HasIndex("DeviceCode")
-                    .IsUnique();
-
-                b.HasIndex("Expiration");
-
-                b.ToTable("DeviceCodes");
-            });
-
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.PersistedGrant", b =>
-            {
-                b.Property<string>("Key")
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<string>("ClientId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<DateTime>("CreationTime")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("Data")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)")
-                    .HasMaxLength(50000);
-
-                b.Property<DateTime?>("Expiration")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("SubjectId")
-                    .HasColumnType("nvarchar(200)")
-                    .HasMaxLength(200);
-
-                b.Property<string>("Type")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(50)")
-                    .HasMaxLength(50);
-
-                b.HasKey("Key");
-
-                b.HasIndex("Expiration");
-
-                b.HasIndex("SubjectId", "ClientId", "Type");
-
-                b.ToTable("PersistedGrants");
-            });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-            {
-                b.Property<string>("Id")
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("ConcurrencyStamp")
                     .IsConcurrencyToken()
@@ -127,7 +48,7 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetRoles");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
@@ -141,9 +62,8 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.Property<string>("ClaimValue")
                     .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("RoleId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("RoleId")
+                    .HasColumnType("int");
 
                 b.HasKey("Id");
 
@@ -152,7 +72,7 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetRoleClaims");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
@@ -166,9 +86,8 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.Property<string>("ClaimValue")
                     .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
                 b.HasKey("Id");
 
@@ -177,7 +96,7 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetUserClaims");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
             {
                 b.Property<string>("LoginProvider")
                     .HasColumnType("nvarchar(450)");
@@ -188,9 +107,8 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.Property<string>("ProviderDisplayName")
                     .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
                 b.HasKey("LoginProvider", "ProviderKey");
 
@@ -199,13 +117,13 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetUserLogins");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
             {
-                b.Property<string>("UserId")
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
-                b.Property<string>("RoleId")
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("RoleId")
+                    .HasColumnType("int");
 
                 b.HasKey("UserId", "RoleId");
 
@@ -214,10 +132,10 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetUserRoles");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
             {
-                b.Property<string>("UserId")
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("UserId")
+                    .HasColumnType("int");
 
                 b.Property<string>("LoginProvider")
                     .HasColumnType("nvarchar(450)");
@@ -233,10 +151,13 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetUserTokens");
             });
 
-            modelBuilder.Entity("WebChat.Infrastructure.API.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("WebChat.Domain.API.Entities.Identity.ApplicationUser", b =>
             {
-                b.Property<string>("Id")
-                    .HasColumnType("nvarchar(450)");
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<int>("AccessFailedCount")
                     .HasColumnType("int");
@@ -298,51 +219,51 @@ namespace WebChat.Infrastructure.API.Identity.Migrations
                 b.ToTable("AspNetUsers");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
             {
-                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                     .WithMany()
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
             {
-                b.HasOne("WebChat.Infrastructure.API.Identity.ApplicationUser", null)
+                b.HasOne("WebChat.Domain.API.Entities.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
             {
-                b.HasOne("WebChat.Infrastructure.API.Identity.ApplicationUser", null)
+                b.HasOne("WebChat.Domain.API.Entities.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
             {
-                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                     .WithMany()
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("WebChat.Infrastructure.API.Identity.ApplicationUser", null)
+                b.HasOne("WebChat.Domain.API.Entities.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
             {
-                b.HasOne("WebChat.Infrastructure.API.Identity.ApplicationUser", null)
+                b.HasOne("WebChat.Domain.API.Entities.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)

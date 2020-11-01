@@ -1,34 +1,30 @@
-import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {Observable} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 
-import {ApiService} from './api.service';
+import {OnDispose} from './dispose.model';
 
-@Injectable()
-export abstract class AbstractApiService<TModel, TListModel> implements ApiService<TModel, TListModel> {
-  protected endpoint: string;
+export abstract class AbstractApiService<TModel> implements OnDispose {
+  protected stop$: Subject<void> = new Subject<void>();
 
   protected constructor(protected http: HttpClient) {
   }
 
-  create(model: TModel): Observable<TModel> {
-    return undefined;
+  public onDispose() {
+    this.stop$.next();
+    this.stop$.complete();
   }
 
-  delete(id: number): Observable<TModel> {
-    return undefined;
-  }
+  protected handleError(error): Observable<never> {
+    let errorMessage: string;
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
 
-  getAll(): Observable<TListModel> {
-    return undefined;
-  }
+    console.log(errorMessage);
 
-  getById(id: number): Observable<TModel> {
-    return undefined;
-  }
-
-  update(id: number, model: TModel): Observable<TModel> {
-    return undefined;
+    return throwError(errorMessage);
   }
 }

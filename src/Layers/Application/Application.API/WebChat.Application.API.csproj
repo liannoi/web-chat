@@ -14,6 +14,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Storage\Contacts\Core" />
+        <Folder Include="Storage\Contacts\Owner\Commands\Create" />
+        <Folder Include="Storage\Contacts\Owner\Commands\Delete" />
+        <Folder Include="Storage\Contacts\Owner\Commands\Update" />
+        <Folder Include="Storage\Contacts\Owner\Queries\List" />
         <Folder Include="Storage\Conversations\Core\Commands\Create" />
         <Folder Include="Storage\Conversations\Core\Commands\Delete" />
         <Folder Include="Storage\Conversations\Core\Commands\Update" />
@@ -62,8 +67,6 @@
         <Folder Include="Storage\Users\Groups\Models" />
         <Folder Include="Storage\Users\Groups\Queries\Details" />
         <Folder Include="Storage\Users\Groups\Queries\List" />
-        <Folder Include="Storage\Users\Identity\Queries\Details" />
-        <Folder Include="Storage\Users\Identity\Queries\List" />
     </ItemGroup>
 
     <ItemGroup>

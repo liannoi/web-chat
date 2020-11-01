@@ -3,11 +3,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
-import {AuthService} from '../../core/auth.service';
-import {UserModel} from '../shared/models/user.model';
+import {AuthService, OnSignup, SignupCommand} from '../../core/auth.service';
+import {UserModel} from '../shared/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
-import {JwtTokenModel} from '../shared/models/jwt-token.model';
-import {OnSignup, SignupCommand} from '../shared/commands/signup-command.model';
+import {JwtTokenModel} from '../shared/jwt-token.model';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +17,7 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
   public identityError = '';
-  private user: UserModel = {userName: '', password: ''};
+  private user: UserModel = new UserModel();
 
   public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
     titleService.setTitle(`Join ${ApplicationNamings.Application}`);
@@ -28,8 +27,8 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
   // Getters for the form
   ///////////////////////////////////////////////////////////////////////////
 
-  get userName() {
-    return this.formGroup.get('userName');
+  get username() {
+    return this.formGroup.get('username');
   }
 
   get password() {
@@ -51,7 +50,7 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
 
   public onSignupFailed(error: any): void {
     console.error(error);
-    this.userName.setValue(this.user.userName);
+    this.username.setValue(this.user.username);
     this.password.setValue('');
     this.haveFirstAttempt = true;
     this.identityError = error;
@@ -81,7 +80,7 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
 
   private setupForm() {
     this.formGroup = new FormGroup({
-      userName: new FormControl(this.user.userName, [
+      username: new FormControl(this.user.username, [
         Validators.required,
         Validators.pattern('^([^\\s]*)$')
       ]),

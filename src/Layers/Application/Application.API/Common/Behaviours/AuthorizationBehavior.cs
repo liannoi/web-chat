@@ -28,7 +28,7 @@ namespace WebChat.Application.API.Common.Behaviours
             if (!authorizeAttributes.Any()) return await next();
 
             // Must be authenticated user
-            if (_currentUserService.UserId == null) throw new UnauthorizedAccessException();
+            if (_currentUserService.Username == null) throw new UnauthorizedAccessException();
 
             var authorizeAttributesWithRoles = authorizeAttributes.Where(a => !string.IsNullOrWhiteSpace(a.Roles));
 
@@ -39,7 +39,7 @@ namespace WebChat.Application.API.Common.Behaviours
                     var authorized = false;
                     foreach (var role in roles)
                     {
-                        var isInRole = await _identityService.UserIsInRole(_currentUserService.UserId, role.Trim());
+                        var isInRole = await _identityService.UserIsInRole(_currentUserService.Username, role.Trim());
                         if (!isInRole) continue;
                         authorized = true;
                         break;

@@ -3,9 +3,8 @@ import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
 import {ApplicationNamings, ApplicationPaths} from '../app.constants';
-import {AuthService} from '../core/auth.service';
-import {OnVerified, VerifyCommand} from '../auth/shared/commands/verify-command.model';
-import {UserModel} from '../auth/shared/models/user.model';
+import {AuthService, OnVerified, VerifyCommand} from '../core/auth.service';
+import {UserModel} from '../auth/shared/user.model';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +12,8 @@ import {UserModel} from '../auth/shared/models/user.model';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy, OnVerified {
+  public user: UserModel;
+
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
     titleService.setTitle(`${ApplicationNamings.Application} App`);
   }
@@ -22,6 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnVerified {
   }
 
   public onVerifiedSuccess(user: UserModel): void {
+    this.user = user;
     console.log(user);
   }
 

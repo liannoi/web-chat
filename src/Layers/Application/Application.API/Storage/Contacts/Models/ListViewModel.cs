@@ -6,7 +6,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WebChat.Application.API.Common.Interfaces;
-using WebChat.Application.API.Storage.Contacts.Queries.List;
+using WebChat.Application.API.Storage.Contacts.Core.Queries.List;
 
 namespace WebChat.Application.API.Storage.Contacts.Models
 {

@@ -6,12 +6,10 @@ import {catchError, takeUntil} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 
 import {ApiEndpoints} from './api.constants';
-import {UserModel} from '../auth/shared/models/user.model';
-import {JwtTokenModel} from '../auth/shared/models/jwt-token.model';
+import {UserModel} from '../auth/shared/user.model';
+import {JwtTokenModel} from '../auth/shared/jwt-token.model';
 import {ApplicationNamings} from '../app.constants';
-import {LoginCommand, OnLogin} from '../auth/shared/commands/login-command.model';
-import {OnSignup, SignupCommand} from '../auth/shared/commands/signup-command.model';
-import {OnVerified, VerifyCommand} from '../auth/shared/commands/verify-command.model';
+import {OnDispose} from './dispose.model';
 
 @Injectable()
 export class AuthService implements OnDispose {
@@ -103,9 +101,46 @@ export class AuthService implements OnDispose {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Dispose
+// Login Command
 ///////////////////////////////////////////////////////////////////////////
 
-export interface OnDispose {
-  onDispose(): void;
+export class LoginCommand {
+  public constructor(public user: UserModel) {
+  }
+}
+
+export interface OnLogin {
+  onLoginSuccess(token: JwtTokenModel): void;
+
+  onLoginFailed(error: any): void;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Signup Command
+///////////////////////////////////////////////////////////////////////////
+
+export class SignupCommand {
+  public constructor(public user: UserModel) {
+  }
+}
+
+export interface OnSignup {
+  onSignupSuccess(token: JwtTokenModel): void;
+
+  onSignupFailed(error: any): void;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Verify Command
+///////////////////////////////////////////////////////////////////////////
+
+export class VerifyCommand {
+  public constructor(public token: JwtTokenModel) {
+  }
+}
+
+export interface OnVerified {
+  onVerifiedSuccess(user: UserModel): void;
+
+  onVerifiedFailed(error: any): void;
 }

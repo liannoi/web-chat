@@ -29,7 +29,8 @@ namespace WebChat.Infrastructure.API
             services.AddDbContext<WebChatIdentityContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase)));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<WebChatIdentityContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>()
+                .AddEntityFrameworkStores<WebChatIdentityContext>();
 
             services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();

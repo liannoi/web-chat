@@ -1,21 +1,19 @@
 using System.Threading.Tasks;
-using WebChat.Application.API.Storage.Users.Identity.Models;
+using WebChat.Application.API.Storage.Users.Core.Models;
 using WebChat.Domain.API.Entities.Identity;
 
 namespace WebChat.Application.API.Common.Identity
 {
-    public interface IIdentityService : IIdentityServer
+    public interface IIdentityService : IIdentityServer<ApplicationUser, int>
     {
-        Task<string> GetUserNameAsync(string userId);
+        Task<ApplicationUser> GetUserAsync(string username);
 
-        Task<(IdentityResult Result, JwtToken Token)> GetUserAsync(string userName, string password);
+        Task<ApplicationUser> GetUserAsync(int userId);
 
-        Task<ApplicationUser> GetUserAsync(string userName);
+        Task<(IdentityResult Result, JwtToken Token)> Login(string username, string password);
 
-        Task<bool> UserIsInRole(string userId, string role);
+        Task<(IdentityResult Result, JwtToken Token)> Signup(string username, string password);
 
-        Task<(IdentityResult Result, JwtToken Token)> CreateUserAsync(string userName, string password);
-
-        Task<IdentityResult> DeleteUserAsync(string userId);
+        Task<bool> UserIsInRole(string username, string role);
     }
 }

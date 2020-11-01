@@ -11,9 +11,9 @@ namespace WebChat.Presentation.API.Common.Services
             var stream = httpContextAccessor.HttpContext.Request.Headers["Authorization"];
             if (stream.Count == 0) return;
 
-            UserId = identityService.ReadToken(stream);
+            Username = identityService.ReadToken(stream);
         }
 
-        public string UserId { get; }
+        public string Username { get; }
     }
 }

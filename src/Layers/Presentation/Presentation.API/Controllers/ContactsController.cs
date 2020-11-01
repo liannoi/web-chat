@@ -1,20 +1,17 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.Contacts.Commands.Create;
-using WebChat.Application.API.Storage.Contacts.Commands.Delete;
-using WebChat.Application.API.Storage.Contacts.Commands.Update;
+using WebChat.Application.API.Storage.Contacts.Core.Commands.Create;
+using WebChat.Application.API.Storage.Contacts.Core.Commands.Delete;
+using WebChat.Application.API.Storage.Contacts.Core.Commands.Update;
+using WebChat.Application.API.Storage.Contacts.Core.Queries.Details;
+using WebChat.Application.API.Storage.Contacts.Core.Queries.List;
 using WebChat.Application.API.Storage.Contacts.Models;
-using WebChat.Application.API.Storage.Contacts.Queries.Details;
-using WebChat.Application.API.Storage.Contacts.Queries.List;
 
 namespace WebChat.Presentation.API.Controllers
 {
     public class ContactsController : BaseController
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<ListViewModel>> GetAll()
         {
             return Ok(await Mediator.Send(new ListQuery()));

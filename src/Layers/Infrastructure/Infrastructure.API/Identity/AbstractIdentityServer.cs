@@ -7,10 +7,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
+using WebChat.Domain.API.Entities.Identity;
 
 namespace WebChat.Infrastructure.API.Identity
 {
-    public abstract class AbstractIdentityServer : IIdentityServer
+    public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser, int>
     {
         private readonly IdentitySettings _settings;
 
@@ -19,7 +20,7 @@ namespace WebChat.Infrastructure.API.Identity
             _settings = settings.Value;
         }
 
-        public string CreateToken<TUser>(TUser user) where TUser : IdentityUser
+        public string CreateToken(ApplicationUser user)
         {
             return new JwtSecurityTokenHandler().WriteToken(PrepareToken(user));
         }
@@ -41,7 +42,7 @@ namespace WebChat.Infrastructure.API.Identity
             }
         }
 
-        private JwtSecurityToken PrepareToken(IdentityUser user)
+        private JwtSecurityToken PrepareToken(IdentityUser<int> user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

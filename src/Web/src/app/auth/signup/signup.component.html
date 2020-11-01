@@ -11,11 +11,11 @@
         <label class="font-weight-bold" for="user_username">Username</label>
         <input class="form-control" formControlName="userName" id="user_username" required type="text">
 
-        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger mt-1">
-          <div *ngIf="userName.errors.required">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger mt-1">
+          <div *ngIf="username.errors.required">
             <span>Username cannot be empty.</span>
           </div>
-          <div *ngIf="userName.errors.pattern">
+          <div *ngIf="username.errors.pattern">
             <span>Username cannot contain spaces.</span>
           </div>
         </div>
