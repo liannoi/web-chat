@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 import {AuthService, OnVerified, VerifyCommand} from '../../core/auth.service';
 import {UserModel} from '../shared/user.model';
-import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
+import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
 
 @Component({
   selector: 'app-profile',

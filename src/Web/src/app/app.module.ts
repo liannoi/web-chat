@@ -6,22 +6,21 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './shared/home/home.component';
-import {DocsApiComponent} from './shared/docs-api/docs-api.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavFooterComponent} from './shared/nav-footer/nav-footer.component';
 import {NavTopMenuComponent} from './shared/nav-top-menu/nav-top-menu.component';
 import {AuthModule} from './auth/auth.module';
 import {ChatModule} from './chat/chat.module';
-import {StatusNotFoundComponent} from './shared/status-not-found/status-not-found.component';
+import {StatusesModule} from './statuses/statuses.module';
+import {ContactsModule} from './contacts/contacts.module';
+import {DocsModule} from './docs/docs.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DocsApiComponent,
     NavTopMenuComponent,
-    NavFooterComponent,
-    StatusNotFoundComponent
+    NavFooterComponent
   ],
   imports: [
     CommonModule,
@@ -29,15 +28,16 @@ import {StatusNotFoundComponent} from './shared/status-not-found/status-not-foun
     NgbModule,
     AuthModule,
     ChatModule,
-    AppRoutingModule
+    DocsModule,
+    ContactsModule,
+    AppRoutingModule,
+    StatusesModule,
   ],
   exports: [
     AppComponent,
     HomeComponent,
-    DocsApiComponent,
     NavTopMenuComponent,
-    NavFooterComponent,
-    StatusNotFoundComponent
+    NavFooterComponent
   ],
   bootstrap: [AppComponent]
 })

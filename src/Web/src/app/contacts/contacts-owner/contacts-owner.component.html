@@ -1,0 +1,10 @@
+<div class="row mt-5 d-flex justify-content-center align-items-center">
+  <div class="col-sm-6">
+    <div *ngFor="let contact; of contacts?.contacts; index as i;" class="card mb-2 bg-transparent">
+      <div class="card-body">
+        <h5 class="card-title">{{contact.firstName}} {{contact.lastName}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted text-single">{{contact.email }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

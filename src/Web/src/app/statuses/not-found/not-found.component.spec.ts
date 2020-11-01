@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {DocsApiComponent} from './docs-api.component';
+import {NotFoundComponent} from './not-found.component';
 
-describe('ApiComponent', () => {
-  let component: DocsApiComponent;
-  let fixture: ComponentFixture<DocsApiComponent>;
+describe('StatusNotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DocsApiComponent]
+      declarations: [NotFoundComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocsApiComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

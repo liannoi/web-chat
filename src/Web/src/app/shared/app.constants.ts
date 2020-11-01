@@ -6,6 +6,7 @@ const applicationNamings: ApplicationNamings = {
 const applicationPaths: ApplicationPaths = {
   Home: '',
   Chat: 'app',
+  Contacts: 'app/contacts',
   DocsApi: 'docs/api',
   Login: 'auth/login',
   Signup: 'auth/signup',
@@ -22,6 +23,7 @@ interface ApplicationNamings {
 interface ApplicationPaths {
   readonly Home: string;
   readonly Chat: string;
+  readonly Contacts: string;
   readonly DocsApi: string;
   readonly Login: string;
   readonly Signup: string;

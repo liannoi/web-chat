@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
-import {ApplicationNamings, ApplicationPaths} from '../app.constants';
+import {ApplicationNamings, ApplicationPaths} from '../shared/app.constants';
 import {AuthService, OnVerified, VerifyCommand} from '../core/auth.service';
 import {UserModel} from '../auth/shared/user.model';
 

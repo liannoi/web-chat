@@ -5,10 +5,10 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 
-import {ApiEndpoints} from './api.constants';
+import {ApiEndpoints} from '../shared/api.constants';
 import {UserModel} from '../auth/shared/user.model';
 import {JwtTokenModel} from '../auth/shared/jwt-token.model';
-import {ApplicationNamings} from '../app.constants';
+import {ApplicationNamings} from '../shared/app.constants';
 import {OnDispose} from './dispose.model';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {ApplicationNamings} from '../../app.constants';
+import {ApplicationNamings} from '../app.constants';
 
 @Component({
   selector: 'app-home',

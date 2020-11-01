@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {LoginComponent} from './login/login.component';
-import {ApplicationPaths} from '../app.constants';
+import {ApplicationPaths} from '../shared/app.constants';
 import {LogoutComponent} from './logout/logout.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SignupComponent} from './signup/signup.component';

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {ApplicationPaths} from '../../app.constants';
+import {ApplicationPaths} from '../app.constants';
 import {AuthService} from '../../core/auth.service';
 
 @Component({

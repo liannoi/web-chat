@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {ApplicationNamings} from '../../app.constants';
+import {ApplicationNamings} from '../../shared/app.constants';
 
 @Component({
-  selector: 'app-docs-api',
-  templateUrl: './docs-api.component.html',
-  styleUrls: ['./docs-api.component.css']
+  selector: 'app-api-docs',
+  templateUrl: './api-docs.component.html',
+  styleUrls: ['./api-docs.component.css']
 })
-export class DocsApiComponent {
+export class ApiDocsComponent {
   public constructor(private titleService: Title) {
     titleService.setTitle(`${ApplicationNamings.Application} APIs`);
   }

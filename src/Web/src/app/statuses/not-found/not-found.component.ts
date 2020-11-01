@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {ApplicationNamings} from '../../app.constants';
+import {ApplicationNamings} from '../../shared/app.constants';
 
 @Component({
-  selector: 'app-status-not-found',
-  templateUrl: './status-not-found.component.html',
-  styleUrls: ['./status-not-found.component.css']
+  selector: 'app-not-found',
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.css']
 })
-export class StatusNotFoundComponent {
+export class NotFoundComponent {
   public constructor(private titleService: Title) {
     titleService.setTitle(`Page Not Found - ${ApplicationNamings.Application}`);
   }

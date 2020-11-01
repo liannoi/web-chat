@@ -5,7 +5,7 @@ import {Title} from '@angular/platform-browser';
 
 import {UserModel} from '../shared/user.model';
 import {unauthorizedValidator} from '../shared/unauthorized.validator';
-import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
+import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
 import {JwtTokenModel} from '../shared/jwt-token.model';
 import {AuthService, LoginCommand, OnLogin} from '../../core/auth.service';
 

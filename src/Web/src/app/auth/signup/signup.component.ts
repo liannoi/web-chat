@@ -5,7 +5,7 @@ import {Title} from '@angular/platform-browser';
 
 import {AuthService, OnSignup, SignupCommand} from '../../core/auth.service';
 import {UserModel} from '../shared/user.model';
-import {ApplicationNamings, ApplicationPaths} from '../../app.constants';
+import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
 import {JwtTokenModel} from '../shared/jwt-token.model';
 
 @Component({

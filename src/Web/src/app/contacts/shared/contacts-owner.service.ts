@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 
 import {catchError, takeUntil} from 'rxjs/operators';
 
-import {AbstractApiService} from '../../../core/abstract-api.service';
+import {AbstractApiService} from '../../core/abstract-api.service';
 import {ContactModel} from './contact.model';
-import {ApiEndpoints} from '../../../core/api.constants';
+import {ApiEndpoints} from '../../shared/api.constants';
 import {ContactsListModel} from './contacts-list.model';
 
 @Injectable()
