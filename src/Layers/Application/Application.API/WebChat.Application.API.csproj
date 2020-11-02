@@ -14,63 +14,27 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Storage\Contacts\Core" />
-        <Folder Include="Storage\Contacts\Owner\Commands\Create" />
-        <Folder Include="Storage\Contacts\Owner\Commands\Delete" />
-        <Folder Include="Storage\Contacts\Owner\Commands\Update" />
-        <Folder Include="Storage\Contacts\Owner\Queries\List" />
-        <Folder Include="Storage\Conversations\Core\Commands\Create" />
-        <Folder Include="Storage\Conversations\Core\Commands\Delete" />
-        <Folder Include="Storage\Conversations\Core\Commands\Update" />
-        <Folder Include="Storage\Conversations\Core\Models" />
-        <Folder Include="Storage\Conversations\Core\Queries\Details" />
-        <Folder Include="Storage\Conversations\Core\Queries\List" />
-        <Folder Include="Storage\Conversations\Messages\Commands\Create" />
-        <Folder Include="Storage\Conversations\Messages\Commands\Delete" />
-        <Folder Include="Storage\Conversations\Messages\Commands\Update" />
-        <Folder Include="Storage\Conversations\Messages\Models" />
-        <Folder Include="Storage\Conversations\Messages\Queries\Details" />
-        <Folder Include="Storage\Conversations\Messages\Queries\List" />
-        <Folder Include="Storage\Groups\Administrators\Commands\Create" />
-        <Folder Include="Storage\Groups\Administrators\Commands\Delete" />
-        <Folder Include="Storage\Groups\Administrators\Commands\Update" />
-        <Folder Include="Storage\Groups\Administrators\Models" />
-        <Folder Include="Storage\Groups\Administrators\Queries\Details" />
-        <Folder Include="Storage\Groups\Administrators\Queries\List" />
-        <Folder Include="Storage\Groups\Blacklists\Commands\Create" />
-        <Folder Include="Storage\Groups\Blacklists\Commands\Delete" />
-        <Folder Include="Storage\Groups\Blacklists\Commands\Update" />
-        <Folder Include="Storage\Groups\Blacklists\Models" />
-        <Folder Include="Storage\Groups\Blacklists\Queries\Details" />
-        <Folder Include="Storage\Groups\Blacklists\Queries\List" />
-        <Folder Include="Storage\Groups\Core\Commands\Create" />
-        <Folder Include="Storage\Groups\Core\Commands\Delete" />
-        <Folder Include="Storage\Groups\Core\Commands\Update" />
-        <Folder Include="Storage\Groups\Core\Models" />
-        <Folder Include="Storage\Groups\Core\Queries\Details" />
-        <Folder Include="Storage\Groups\Core\Queries\List" />
-        <Folder Include="Storage\Groups\Messages\Commands\Create" />
-        <Folder Include="Storage\Groups\Messages\Commands\Delete" />
-        <Folder Include="Storage\Groups\Messages\Commands\Update" />
-        <Folder Include="Storage\Groups\Messages\Models" />
-        <Folder Include="Storage\Groups\Messages\Queries\Details" />
-        <Folder Include="Storage\Groups\Messages\Queries\List" />
-        <Folder Include="Storage\Users\Blacklists\Commands\Create" />
-        <Folder Include="Storage\Users\Blacklists\Commands\Delete" />
-        <Folder Include="Storage\Users\Blacklists\Commands\Update" />
-        <Folder Include="Storage\Users\Blacklists\Models" />
-        <Folder Include="Storage\Users\Blacklists\Queries\Details" />
-        <Folder Include="Storage\Users\Blacklists\Queries\List" />
-        <Folder Include="Storage\Users\Groups\Commands\Create" />
-        <Folder Include="Storage\Users\Groups\Commands\Delete" />
-        <Folder Include="Storage\Users\Groups\Commands\Update" />
-        <Folder Include="Storage\Users\Groups\Models" />
-        <Folder Include="Storage\Users\Groups\Queries\Details" />
-        <Folder Include="Storage\Users\Groups\Queries\List" />
+        <ProjectReference Include="..\..\Domain\Domain.API\WebChat.Domain.API.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Domain\Domain.API\WebChat.Domain.API.csproj" />
+      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Create" />
+      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Delete" />
+      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Update" />
+      <Folder Include="Storage\Conversations\Core\LeftOrRight\Queries\Details" />
+      <Folder Include="Storage\Conversations\Messages\Core\Models" />
+      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Create" />
+      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Delete" />
+      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Update" />
+      <Folder Include="Storage\Conversations\Messages\Owner\Queries\Details" />
+      <Folder Include="Storage\Conversations\Messages\Owner\Queries\List" />
+      <Folder Include="Storage\Groups\Core\Models" />
+      <Folder Include="Storage\Users\Blacklists\Commands\Create" />
+      <Folder Include="Storage\Users\Blacklists\Commands\Delete" />
+      <Folder Include="Storage\Users\Blacklists\Commands\Update" />
+      <Folder Include="Storage\Users\Blacklists\Queries\Details" />
+      <Folder Include="Storage\Users\Blacklists\Queries\List" />
+      <Folder Include="Storage\Users\Groups" />
     </ItemGroup>
 
 </Project>

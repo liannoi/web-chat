@@ -1,7 +1,7 @@
 using AutoMapper;
 using WebChat.Application.API.Common.Mappings;
 
-namespace WebChat.Application.API.Storage.Contacts.Models
+namespace WebChat.Application.API.Storage.Contacts.Core.Models
 {
     public class DetailsViewModel : IMapFrom<Domain.API.Entities.Contacts>
     {

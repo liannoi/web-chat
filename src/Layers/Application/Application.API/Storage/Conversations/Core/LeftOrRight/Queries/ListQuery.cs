@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,13 +6,13 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WebChat.Application.API.Common.Interfaces;
-using WebChat.Application.API.Storage.Contacts.Core.Queries.List;
+using WebChat.Application.API.Storage.Conversations.Core.Core.Models;
 
-namespace WebChat.Application.API.Storage.Contacts.Models
+namespace WebChat.Application.API.Storage.Conversations.Core.LeftOrRight.Queries
 {
-    public class ListViewModel
+    public class ListQuery : IRequest<ListViewModel>
     {
-        public IList<DetailsViewModel> Contacts { get; set; }
+        public int UserId { get; set; }
 
         private class Handler : IRequestHandler<ListQuery, ListViewModel>
         {
@@ -27,12 +27,12 @@ namespace WebChat.Application.API.Storage.Contacts.Models
 
             public async Task<ListViewModel> Handle(ListQuery request, CancellationToken cancellationToken)
             {
-                return new ListViewModel
-                {
-                    Contacts = await _context.Contacts
-                        .ProjectTo<DetailsViewModel>(_mapper.ConfigurationProvider)
-                        .ToListAsync(CancellationToken.None)
-                };
+                var tmp = await _context.Conversations
+                    .Where(c => c.LeftUserId == request.UserId || c.RightUserId == request.UserId)
+                    .ProjectTo<DetailsViewModel>(_mapper.ConfigurationProvider)
+                    .ToListAsync(cancellationToken);
+
+                return new ListViewModel {Conversations = tmp};
             }
         }
     }

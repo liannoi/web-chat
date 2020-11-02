@@ -6,15 +6,15 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WebChat.Application.API.Common.Interfaces;
-using WebChat.Application.API.Storage.Contacts.Models;
+using WebChat.Application.API.Storage.Contacts.Core.Models;
 
-namespace WebChat.Application.API.Storage.Contacts.Owner.Queries.Details
+namespace WebChat.Application.API.Storage.Contacts.Owner.Queries
 {
-    public class DetailsQuery : IRequest<ListViewModel>
+    public class ListQuery : IRequest<ListViewModel>
     {
         public int OwnerUserId { get; set; }
 
-        private class Handler : IRequestHandler<DetailsQuery, ListViewModel>
+        private class Handler : IRequestHandler<ListQuery, ListViewModel>
         {
             private readonly IWebChatContext _context;
             private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace WebChat.Application.API.Storage.Contacts.Owner.Queries.Details
                 _mapper = mapper;
             }
 
-            public async Task<ListViewModel> Handle(DetailsQuery request, CancellationToken cancellationToken)
+            public async Task<ListViewModel> Handle(ListQuery request, CancellationToken cancellationToken)
             {
                 return new ListViewModel
                 {

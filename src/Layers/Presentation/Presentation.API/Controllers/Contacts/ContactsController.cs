@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Contacts.Core.Commands.Create;
 using WebChat.Application.API.Storage.Contacts.Core.Commands.Delete;
 using WebChat.Application.API.Storage.Contacts.Core.Commands.Update;
+using WebChat.Application.API.Storage.Contacts.Core.Models;
 using WebChat.Application.API.Storage.Contacts.Core.Queries.Details;
 using WebChat.Application.API.Storage.Contacts.Core.Queries.List;
-using WebChat.Application.API.Storage.Contacts.Models;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.Contacts
