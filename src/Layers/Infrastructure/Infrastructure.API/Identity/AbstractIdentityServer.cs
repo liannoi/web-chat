@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
-using WebChat.Domain.API.Entities.Identity;
+using WebChat.Domain.API.Identity;
 
 namespace WebChat.Infrastructure.API.Identity
 {

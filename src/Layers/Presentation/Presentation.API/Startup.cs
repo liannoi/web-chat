@@ -13,8 +13,7 @@ using WebChat.Application.API.Common.Identity;
 using WebChat.Infrastructure.API;
 using WebChat.Infrastructure.API.Identity;
 using WebChat.Infrastructure.API.Persistence;
-using WebChat.Presentation.API.Common.Filters;
-using WebChat.Presentation.API.Common.Services;
+using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API
 {

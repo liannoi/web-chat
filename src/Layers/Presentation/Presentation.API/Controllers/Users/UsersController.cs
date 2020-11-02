@@ -5,8 +5,9 @@ using WebChat.Application.API.Storage.Users.Core.Commands.Login;
 using WebChat.Application.API.Storage.Users.Core.Commands.Signup;
 using WebChat.Application.API.Storage.Users.Core.Commands.Verify;
 using WebChat.Application.API.Storage.Users.Core.Models;
+using WebChat.Presentation.API.Common;
 
-namespace WebChat.Presentation.API.Controllers
+namespace WebChat.Presentation.API.Controllers.Users
 {
     public class UsersController : BaseController
     {

@@ -6,8 +6,9 @@ using WebChat.Application.API.Storage.Contacts.Core.Commands.Update;
 using WebChat.Application.API.Storage.Contacts.Core.Queries.Details;
 using WebChat.Application.API.Storage.Contacts.Core.Queries.List;
 using WebChat.Application.API.Storage.Contacts.Models;
+using WebChat.Presentation.API.Common;
 
-namespace WebChat.Presentation.API.Controllers
+namespace WebChat.Presentation.API.Controllers.Contacts
 {
     public class ContactsController : BaseController
     {

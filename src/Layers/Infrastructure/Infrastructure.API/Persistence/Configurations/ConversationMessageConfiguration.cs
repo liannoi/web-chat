@@ -10,6 +10,7 @@ namespace WebChat.Infrastructure.API.Persistence.Configurations
         {
             builder.HasKey(e => e.ConversationMessageId);
             builder.Property(e => e.Message).IsRequired().HasMaxLength(1024);
+            builder.Property(e => e.Publish).HasColumnType("datetime").HasDefaultValueSql("(getdate())");
 
             builder.HasOne(d => d.Conversation)
                 .WithMany(p => p.ConversationMessages)

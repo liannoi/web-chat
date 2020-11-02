@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using WebChat.Application.API.Common.Identity;
 
-namespace WebChat.Presentation.API.Common.Services
+namespace WebChat.Presentation.API.Common
 {
     public class CurrentUserService : ICurrentUserService
     {

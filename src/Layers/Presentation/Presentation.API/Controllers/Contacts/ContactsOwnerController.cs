@@ -2,8 +2,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebChat.Application.API.Storage.Contacts.Models;
 using WebChat.Application.API.Storage.Contacts.Owner.Queries.Details;
+using WebChat.Presentation.API.Common;
 
-namespace WebChat.Presentation.API.Controllers
+namespace WebChat.Presentation.API.Controllers.Contacts
 {
     public class ContactsOwnerController : BaseController
     {

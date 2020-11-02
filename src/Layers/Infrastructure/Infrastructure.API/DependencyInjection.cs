@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
-using WebChat.Domain.API.Entities.Identity;
+using WebChat.Domain.API.Identity;
 using WebChat.Infrastructure.API.Identity;
 using WebChat.Infrastructure.API.Persistence;
 

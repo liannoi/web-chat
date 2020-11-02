@@ -1,6 +1,6 @@
 using AutoMapper;
 using WebChat.Application.API.Common.Mappings;
-using WebChat.Domain.API.Entities.Identity;
+using WebChat.Domain.API.Identity;
 
 namespace WebChat.Application.API.Storage.Users.Core.Models
 {

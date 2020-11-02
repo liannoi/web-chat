@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebChat.Presentation.API.Controllers
+namespace WebChat.Presentation.API.Common
 {
     [ApiController]
     [Route("api/[controller]")]
