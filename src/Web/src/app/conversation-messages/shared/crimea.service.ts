@@ -6,7 +6,7 @@ import {ApiEndpoints} from '../../shared/api.constants';
 import {catchError, takeUntil} from 'rxjs/operators';
 
 @Injectable()
-export class ConversationMessageService extends AbstractApiService<ConversationMessageModel> {
+export class CrimeaService extends AbstractApiService<ConversationMessageModel> {
   constructor(http: HttpClient) {
     super(http);
   }

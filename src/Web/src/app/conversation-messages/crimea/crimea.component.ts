@@ -4,7 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 
 import {ConversationMessageModel} from '../shared/conversation-message.model';
 import {ConversationModel} from '../../conversations/shared/conversation.model';
-import {ConversationMessageService, DetailsQuery, OnDetails} from '../shared/conversation-message.service';
+import {CrimeaService, DetailsQuery, OnDetails} from '../shared/crimea.service';
 
 @Component({
   selector: 'app-crimea',
@@ -14,7 +14,7 @@ import {ConversationMessageService, DetailsQuery, OnDetails} from '../shared/con
 export class CrimeaComponent implements OnInit, OnDetails {
   public message: ConversationMessageModel;
 
-  public constructor(private conversationMessageService: ConversationMessageService) {
+  public constructor(private conversationMessageService: CrimeaService) {
   }
 
   // tslint:disable-next-line:variable-name

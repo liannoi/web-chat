@@ -1,0 +1,8 @@
+.container-scroll {
+  max-height: 0;
+  scroll-behavior: smooth;
+}
+
+.bg-soft-primary {
+  background-color: #f5f6fa;
+}
