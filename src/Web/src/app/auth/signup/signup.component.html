@@ -9,7 +9,7 @@
     <form (ngSubmit)="signup()" [formGroup]="formGroup" method="post">
       <div class="form-group">
         <label class="font-weight-bold" for="user_username">Username</label>
-        <input class="form-control" formControlName="userName" id="user_username" required type="text">
+        <input class="form-control" formControlName="username" id="user_username" required type="text">
 
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger mt-1">
           <div *ngIf="username.errors.required">
