@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using WebChat.Application.API.Storage.Users.Core.Models;
+using WebChat.Application.API.Storage.Users.Models;
 using WebChat.Domain.API.Identity;
 
 namespace WebChat.Application.API.Common.Identity

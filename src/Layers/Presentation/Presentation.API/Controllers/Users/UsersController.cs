@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.Users.Core.Commands.Login;
-using WebChat.Application.API.Storage.Users.Core.Commands.Signup;
-using WebChat.Application.API.Storage.Users.Core.Commands.Verify;
-using WebChat.Application.API.Storage.Users.Core.Models;
+using WebChat.Application.API.Storage.Users.Commands.Login;
+using WebChat.Application.API.Storage.Users.Commands.Signup;
+using WebChat.Application.API.Storage.Users.Commands.Verify;
+using WebChat.Application.API.Storage.Users.Models;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.Users

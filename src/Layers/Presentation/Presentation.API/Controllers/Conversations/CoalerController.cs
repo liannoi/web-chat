@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.Conversations.Core.Core.Models;
-using WebChat.Application.API.Storage.Conversations.Core.LeftOrRight.Queries;
+using WebChat.Application.API.Storage.Conversations.Core.Models;
+using WebChat.Application.API.Storage.Conversations.LeftOrRight.Queries;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.Conversations

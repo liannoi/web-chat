@@ -6,7 +6,7 @@ const applicationNamings: ApplicationNamings = {
 const applicationPaths: ApplicationPaths = {
   Home: '',
   Chat: 'app',
-  Contacts: 'app/contacts',
+  Contacts: 'contacts',
   DocsApi: 'docs/api',
   Login: 'auth/login',
   Signup: 'auth/signup',

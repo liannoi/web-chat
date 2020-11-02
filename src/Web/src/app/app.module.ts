@@ -10,26 +10,30 @@ import {AppRoutingModule} from './app-routing.module';
 import {NavFooterComponent} from './shared/nav-footer/nav-footer.component';
 import {NavTopMenuComponent} from './shared/nav-top-menu/nav-top-menu.component';
 import {AuthModule} from './auth/auth.module';
-import {ChatModule} from './chat/chat.module';
 import {StatusesModule} from './statuses/statuses.module';
 import {ContactsModule} from './contacts/contacts.module';
 import {DocsModule} from './docs/docs.module';
+import {ChatComponent} from './shared/chat/chat.component';
+import {ConversationsModule} from './conversations/conversations.module';
+import {ConversationMessagesModule} from './conversation-messages/conversation-messages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavTopMenuComponent,
-    NavFooterComponent
+    NavFooterComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     NgbModule,
     AuthModule,
-    ChatModule,
     DocsModule,
     ContactsModule,
+    ConversationsModule,
+    ConversationMessagesModule,
     AppRoutingModule,
     StatusesModule,
   ],
@@ -37,7 +41,8 @@ import {DocsModule} from './docs/docs.module';
     AppComponent,
     HomeComponent,
     NavTopMenuComponent,
-    NavFooterComponent
+    NavFooterComponent,
+    ChatComponent
   ],
   bootstrap: [AppComponent]
 })

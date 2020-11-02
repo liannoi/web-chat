@@ -1,40 +1,22 @@
 import {Injectable} from '@angular/core';
+import {AbstractApiService} from '../../core/abstract-api.service';
+import {ConversationModel} from './conversation.model';
 import {HttpClient} from '@angular/common/http';
-
+import {ConversationsListModel} from './conversations-list.model';
+import {ApiEndpoints} from '../../shared/api.constants';
 import {catchError, takeUntil} from 'rxjs/operators';
 
-import {AbstractApiService} from '../../core/abstract-api.service';
-import {ContactModel} from './contact.model';
-import {ApiEndpoints} from '../../shared/api.constants';
-import {ContactsListModel} from './contacts-list.model';
-
 @Injectable()
-export class ContactsOwnerService extends AbstractApiService<ContactModel> {
+export class CoalerService extends AbstractApiService<ConversationModel> {
   constructor(http: HttpClient) {
     super(http);
   }
 
-  public create(model: ContactModel) {
-    return undefined;
-  }
-
-  public delete(id: number) {
-    return undefined;
-  }
-
-  public getById() {
-    return undefined;
-  }
-
   public getAll(request: ListQuery, handler: OnList) {
-    this.http.get<ContactsListModel>(`${ApiEndpoints.ContactsOwner}/${request.ownerUserId}`)
+    this.http.get<ConversationsListModel>(`${ApiEndpoints.Coaler}/${request.userId}`)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(model => handler.onListSuccess(model), error => handler.onListFailed(error));
-  }
-
-  public update(id: number, model: ContactModel) {
-    return undefined;
   }
 }
 
@@ -43,12 +25,12 @@ export class ContactsOwnerService extends AbstractApiService<ContactModel> {
 ///////////////////////////////////////////////////////////////////////////
 
 export class ListQuery {
-  public constructor(public ownerUserId: number) {
+  public constructor(public userId: number) {
   }
 }
 
 export interface OnList {
-  onListSuccess(model: ContactsListModel): void;
+  onListSuccess(model: ConversationsListModel): void;
 
   onListFailed(error: any): void;
 }

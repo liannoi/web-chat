@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {AuthService, OnVerified, VerifyCommand} from '../../core/auth.service';
 import {UserModel} from '../../auth/shared/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
-import {ContactsOwnerService, DetailsQuery, OnDetails} from '../shared/contacts-owner.service';
+import {ContactsOwnerService, ListQuery, OnList} from '../shared/contacts-owner.service';
 import {ContactsListModel} from '../shared/contacts-list.model';
 
 @Component({
@@ -14,45 +14,7 @@ import {ContactsListModel} from '../shared/contacts-list.model';
   styleUrls: ['./contacts-owner.component.css']
 })
 
-/*export class ContactsOwnerComponent implements OnInit, OnDetails {
-  public contacts: ContactsListModel;
-
-  public constructor(private contactsOwnerService: ContactsOwnerService) {
-  }
-
-  // tslint:disable-next-line:variable-name
-  private _user = new BehaviorSubject<UserModel>(new UserModel());
-
-  get user() {
-    return this._user.getValue();
-  }
-
-  @Input()
-  set user(value) {
-    this._user.next(value);
-  }
-
-  public ngOnInit(): void {
-    this._user.subscribe(x => {
-      if (!x) {
-        return;
-      }
-
-      this.contactsOwnerService.getById(new DetailsQuery(x.userId), this);
-    });
-  }
-
-  public onDetailsFailed(error: any): void {
-    console.error(error);
-  }
-
-  public onDetailsSuccess(model: ContactsListModel): void {
-    console.log(model);
-    this.contacts = model;
-  }
-}*/
-
-export class ContactsOwnerComponent implements OnInit, OnDestroy, OnVerified, OnDetails {
+export class ContactsOwnerComponent implements OnInit, OnDestroy, OnVerified, OnList {
   public contacts: ContactsListModel;
 
   public constructor(private titleService: Title,
@@ -67,7 +29,7 @@ export class ContactsOwnerComponent implements OnInit, OnDestroy, OnVerified, On
   }
 
   public onVerifiedSuccess(user: UserModel): void {
-    this.contactsOwnerService.getById(new DetailsQuery(user.userId), this);
+    this.contactsOwnerService.getAll(new ListQuery(user.userId), this);
   }
 
   public onVerifiedFailed(error: any): void {
@@ -76,11 +38,11 @@ export class ContactsOwnerComponent implements OnInit, OnDestroy, OnVerified, On
     this.router.navigate([ApplicationPaths.Login]);
   }
 
-  public onDetailsSuccess(model: ContactsListModel): void {
+  public onListSuccess(model: ContactsListModel): void {
     this.contacts = model;
   }
 
-  public onDetailsFailed(error: any): void {
+  public onListFailed(error: any): void {
   }
 
   public ngOnDestroy() {

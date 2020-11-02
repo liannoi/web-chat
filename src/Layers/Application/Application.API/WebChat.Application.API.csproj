@@ -18,23 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Create" />
-      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Delete" />
-      <Folder Include="Storage\Conversations\Core\LeftOrRight\Commands\Update" />
-      <Folder Include="Storage\Conversations\Core\LeftOrRight\Queries\Details" />
-      <Folder Include="Storage\Conversations\Messages\Core\Models" />
-      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Create" />
-      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Delete" />
-      <Folder Include="Storage\Conversations\Messages\Owner\Commands\Update" />
-      <Folder Include="Storage\Conversations\Messages\Owner\Queries\Details" />
-      <Folder Include="Storage\Conversations\Messages\Owner\Queries\List" />
-      <Folder Include="Storage\Groups\Core\Models" />
-      <Folder Include="Storage\Users\Blacklists\Commands\Create" />
-      <Folder Include="Storage\Users\Blacklists\Commands\Delete" />
-      <Folder Include="Storage\Users\Blacklists\Commands\Update" />
-      <Folder Include="Storage\Users\Blacklists\Queries\Details" />
-      <Folder Include="Storage\Users\Blacklists\Queries\List" />
-      <Folder Include="Storage\Users\Groups" />
+      <Folder Include="Storage\Contacts\Core" />
+      <Folder Include="Storage\Conversations" />
+      <Folder Include="Storage\UserGroups" />
     </ItemGroup>
 
 </Project>

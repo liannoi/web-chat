@@ -1,0 +1,11 @@
+.card {
+  opacity: 0.7;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card:hover {
+  opacity: 1;
+  background-color: #fff !important;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.03);
+}
