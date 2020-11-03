@@ -23,14 +23,14 @@ export class AuthService implements OnDispose {
   ///////////////////////////////////////////////////////////////////////////
 
   public login(request: LoginCommand, handler: OnLogin) {
-    this.http.post<JwtTokenModel>(ApiEndpoints.UsersLogin, request.user)
+    this.http.post<JwtTokenModel>(ApiEndpoints.UserLogin, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => handler.onLoginSuccess(token), error => handler.onLoginFailed(error));
   }
 
   public signup(request: SignupCommand, handler: OnSignup) {
-    this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignup, request.user)
+    this.http.post<JwtTokenModel>(ApiEndpoints.UserSignup, request.user)
       .pipe(catchError(this.handleIdentityError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => handler.onSignupSuccess(token), error => handler.onSignupFailed(error));
@@ -39,7 +39,7 @@ export class AuthService implements OnDispose {
   public verify(request: VerifyCommand, handler: OnVerified) {
     const token = request.token;
 
-    this.http.post<UserModel>(ApiEndpoints.UsersVerify, token, this.authorize(token))
+    this.http.post<UserModel>(ApiEndpoints.UserVerify, token, this.authorize(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => handler.onVerifiedSuccess(user), error => handler.onVerifiedFailed(error));

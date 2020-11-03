@@ -4,6 +4,7 @@
   transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+.selected,
 .card:hover {
   opacity: 1;
   background-color: #fff !important;

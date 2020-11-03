@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
 
   public onLoginFailed(error: any): void {
     console.error(error);
-    this.username.setValue(this.user.username);
+    this.username.setValue(this.user.userName);
     this.password.setValue('');
     this.haveFirstAttempt = true;
   }
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
 
   private setupForm() {
     this.formGroup = new FormGroup({
-      username: new FormControl(this.user.username, [
+      username: new FormControl(this.user.userName, [
         Validators.required,
         Validators.pattern('^([^\\s]*)$')
       ]),

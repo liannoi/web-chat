@@ -5,33 +5,34 @@ import {catchError, takeUntil} from 'rxjs/operators';
 
 import {AbstractApiService} from '../../core/abstract-api.service';
 import {ConversationMessageModel} from './conversation-message.model';
+import {ConversationMessageListModel} from './conversation-message-list.model';
 import {ApiEndpoints} from '../../shared/api.constants';
 
 @Injectable()
-export class CrimeaService extends AbstractApiService<ConversationMessageModel> {
+export class ConversationMessageService extends AbstractApiService<ConversationMessageModel> {
   constructor(http: HttpClient) {
     super(http);
   }
 
-  public getById(request: DetailsQuery, handler: OnDetails) {
-    this.http.get<ConversationMessageModel>(`${ApiEndpoints.CrimeaGetById}/${request.conversationId}`)
+  public getAll(request: ListQuery, handler: OnList) {
+    this.http.get<ConversationMessageListModel>(`${ApiEndpoints.CrimeaGetAll}/${request.conversationId}`)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
-      .subscribe(model => handler.onDetailsSuccess(model), error => handler.onDetailsFailed(error));
+      .subscribe(model => handler.onListSuccess(model), error => handler.onListFailed(error));
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Details Query
+// List Query
 ///////////////////////////////////////////////////////////////////////////
 
-export class DetailsQuery {
+export class ListQuery {
   public constructor(public conversationId: number) {
   }
 }
 
-export interface OnDetails {
-  onDetailsSuccess(model: ConversationMessageModel): void;
+export interface OnList {
+  onListSuccess(model: ConversationMessageListModel): void;
 
-  onDetailsFailed(error: any): void;
+  onListFailed(error: any): void;
 }

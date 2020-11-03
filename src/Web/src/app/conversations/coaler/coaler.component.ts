@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import {BehaviorSubject} from 'rxjs';
 
 import {ConversationsListModel} from '../shared/conversations-list.model';
 import {CoalerService, ListQuery, OnList} from '../shared/coaler.service';
 import {UserModel} from '../../auth/shared/user.model';
+import {ConversationModel} from '../shared/conversation.model';
 
 @Component({
   selector: 'app-coaler',
@@ -13,6 +14,10 @@ import {UserModel} from '../../auth/shared/user.model';
 })
 export class CoalerComponent implements OnInit, OnList {
   public conversations: ConversationsListModel;
+  public rightUser: UserModel;
+  public selectedConversation: ConversationModel;
+
+  @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
 
   public constructor(private coalerService: CoalerService) {
   }
@@ -46,5 +51,14 @@ export class CoalerComponent implements OnInit, OnList {
   public onListSuccess(model: ConversationsListModel): void {
     console.log(model);
     this.conversations = model;
+  }
+
+  public isThisSelected(conversation: ConversationModel) {
+    return this.selectedConversation?.conversationId === conversation.conversationId;
+  }
+
+  public onConversationChanged(conversation: ConversationModel) {
+    this.selectedConversation = conversation;
+    this.conversationChanged.emit(conversation);
   }
 }

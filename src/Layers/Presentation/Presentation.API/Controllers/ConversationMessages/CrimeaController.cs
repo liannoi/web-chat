@@ -8,10 +8,16 @@ namespace WebChat.Presentation.API.Controllers.ConversationMessages
 {
     public class CrimeaController : BaseController
     {
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DetailsViewModel>> GetById(int id)
+        [HttpGet("getById/{id}")]
+        public async Task<ActionResult<ListViewModel>> GetById(int id)
         {
             return Ok(await Mediator.Send(new DetailsQuery {ConversationId = id}));
+        }
+
+        [HttpGet("getAll/{id}")]
+        public async Task<ActionResult<DetailsViewModel>> GetAll(int id)
+        {
+            return Ok(await Mediator.Send(new ListQuery {ConversationId = id}));
         }
     }
 }

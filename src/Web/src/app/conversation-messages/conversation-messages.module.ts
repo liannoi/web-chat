@@ -5,22 +5,26 @@ import {HttpClientModule} from '@angular/common/http';
 import {CrimeaComponent} from './crimea/crimea.component';
 import {ConversationMessagesRoutingModule} from './conversation-messages-routing.module';
 import {CrimeaService} from './shared/crimea.service';
-import {CoreComponent} from './core/core.component';
+import {ConversationMessageComponent} from './conversation-message/conversation-message.component';
+import {ConversationMessageService} from './shared/conversation-message.service';
 
 @NgModule({
   declarations: [
     CrimeaComponent,
-    CoreComponent
+    ConversationMessageComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     ConversationMessagesRoutingModule
   ],
-  providers: [CrimeaService],
+  providers: [
+    ConversationMessageService,
+    CrimeaService
+  ],
   exports: [
     CrimeaComponent,
-    CoreComponent
+    ConversationMessageComponent
   ]
 })
 export class ConversationMessagesModule {

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {ApplicationNamings, ApplicationPaths} from '../app.constants';
 import {AuthService, OnVerified, VerifyCommand} from '../../core/auth.service';
 import {UserModel} from '../../auth/shared/user.model';
+import {ConversationModel} from '../../conversations/shared/conversation.model';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +14,7 @@ import {UserModel} from '../../auth/shared/user.model';
 })
 export class ChatComponent implements OnInit, OnDestroy, OnVerified {
   public user: UserModel;
+  public currentConversation: ConversationModel;
 
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
     titleService.setTitle(`${ApplicationNamings.Application} App`);
@@ -35,5 +37,9 @@ export class ChatComponent implements OnInit, OnDestroy, OnVerified {
 
   public ngOnDestroy() {
     this.authService.onDispose();
+  }
+
+  public updateCurrentConversation(conversation: ConversationModel) {
+    this.currentConversation = conversation;
   }
 }

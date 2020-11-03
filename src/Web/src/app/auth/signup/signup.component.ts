@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
 
   public onSignupFailed(error: any): void {
     console.error(error);
-    this.username.setValue(this.user.username);
+    this.username.setValue(this.user.userName);
     this.password.setValue('');
     this.haveFirstAttempt = true;
     this.identityError = error;
@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
 
   private setupForm() {
     this.formGroup = new FormGroup({
-      username: new FormControl(this.user.username, [
+      username: new FormControl(this.user.userName, [
         Validators.required,
         Validators.pattern('^([^\\s]*)$')
       ]),

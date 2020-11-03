@@ -1,22 +1,31 @@
 const BaseApiAddress = 'https://localhost:5001/api';
-const UsersEndpoint = `${BaseApiAddress}/users`;
+const UsersController = `${BaseApiAddress}/users`;
+const CrimeaController = `${BaseApiAddress}/crimea`;
 
 const apiEndpoints: ApiEndpoints = {
-  UsersLogin: `${UsersEndpoint}/login`,
-  UsersVerify: `${UsersEndpoint}/verify`,
-  UsersSignup: `${UsersEndpoint}/signup`,
+  UserLogin: `${UsersController}/login`,
+  UserVerify: `${UsersController}/verify`,
+  UserSignup: `${UsersController}/signup`,
+
   ContactsOwner: `${BaseApiAddress}/contactsowner`,
+
   Coaler: `${BaseApiAddress}/coaler`,
-  Crimea: `${BaseApiAddress}/crimea`
+
+  CrimeaGetById: `${CrimeaController}/getById`,
+  CrimeaGetAll: `${CrimeaController}/getAll`,
 };
 
 interface ApiEndpoints {
-  readonly UsersLogin: string;
-  readonly UsersVerify: string;
-  readonly UsersSignup: string;
+  readonly UserLogin: string;
+  readonly UserVerify: string;
+  readonly UserSignup: string;
+
   readonly ContactsOwner: string;
+
   readonly Coaler: string;
-  readonly Crimea: string;
+
+  readonly CrimeaGetById: string;
+  readonly CrimeaGetAll: string;
 }
 
 export const ApiEndpoints: ApiEndpoints = apiEndpoints;
