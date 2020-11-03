@@ -24,7 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "6.2.0",
     "bootstrap": "4.5.3",
     "ngx-cookie-service": "10.1.1",
-    "rxjs": "6.5.5",
+    "rxjs": "6.6.3",
     "tslib": "1.14.1",
     "zone.js": "0.10.3"
   },
