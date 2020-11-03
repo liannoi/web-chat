@@ -11,6 +11,7 @@ const apiEndpoints: ApiEndpoints = {
 
   Coaler: `${BaseApiAddress}/coaler`,
 
+  ConversationMessages: `${BaseApiAddress}/conversationmessages`,
   CrimeaGetById: `${CrimeaController}/getById`,
   CrimeaGetAll: `${CrimeaController}/getAll`,
 };
@@ -24,6 +25,7 @@ interface ApiEndpoints {
 
   readonly Coaler: string;
 
+  readonly ConversationMessages: string;
   readonly CrimeaGetById: string;
   readonly CrimeaGetAll: string;
 }

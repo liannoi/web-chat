@@ -12,13 +12,21 @@
   <div class="container mt-4">
     <div class="row d-flex justify-content-end align-items-end">
       <div class="col-sm-9">
-        <form class="form-inline">
+        <form (ngSubmit)="onSendMessage()" [formGroup]="sendMessageForm" class="form-inline" method="post">
           <div class="form-group w-75">
             <label class="text-hide" for="conversation_message">Message</label>
-            <textarea id="conversation_message" name="conversation[message]"
-                      placeholder="Enter message..."></textarea>
+            <textarea formControlName="message" id="conversation_message" placeholder="Enter message..."
+                      required></textarea>
+
+            <div *ngIf="message.invalid && (message.dirty || message.touched)" class="text-danger mt-1">
+              <div *ngIf="message.errors.required">
+                <span>Message cannot be empty.</span>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-primary ml-4 pl-4 pr-4 pt-3 pb-3" type="submit">Send</button>
+          <button [disabled]="sendMessageForm.invalid" class="btn btn-primary ml-4 pl-4 pr-4 pt-3 pb-3" type="submit">
+            Send
+          </button>
         </form>
       </div>
     </div>

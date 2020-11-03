@@ -16,6 +16,7 @@ import {DocsModule} from './docs/docs.module';
 import {ChatComponent} from './shared/chat/chat.component';
 import {ConversationsModule} from './conversations/conversations.module';
 import {ConversationMessagesModule} from './conversation-messages/conversation-messages.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {ConversationMessagesModule} from './conversation-messages/conversation-m
     ConversationMessagesModule,
     AppRoutingModule,
     StatusesModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AppComponent,

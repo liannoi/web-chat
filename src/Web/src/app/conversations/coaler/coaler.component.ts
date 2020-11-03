@@ -14,7 +14,7 @@ import {ConversationModel} from '../shared/conversation.model';
 })
 export class CoalerComponent implements OnInit, OnList {
   public conversations: ConversationsListModel;
-  public rightUser: UserModel;
+  public userModel: UserModel;
   public selectedConversation: ConversationModel;
 
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
@@ -40,6 +40,7 @@ export class CoalerComponent implements OnInit, OnList {
         return;
       }
 
+      this.userModel = model;
       this.coalerService.getAll(new ListQuery(model.userId), this);
     });
   }
@@ -55,6 +56,12 @@ export class CoalerComponent implements OnInit, OnList {
 
   public isThisSelected(conversation: ConversationModel) {
     return this.selectedConversation?.conversationId === conversation.conversationId;
+  }
+
+  public conversationUser(conversation: ConversationModel) {
+    return conversation.rightUser?.userId === this.userModel?.userId
+      ? conversation.leftUser?.userName
+      : conversation.rightUser?.userName;
   }
 
   public onConversationChanged(conversation: ConversationModel) {

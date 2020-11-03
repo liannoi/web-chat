@@ -22,6 +22,8 @@
       <Folder Include="Storage\ConversationMessages\Conversation\Commands\Create" />
       <Folder Include="Storage\ConversationMessages\Conversation\Commands\Delete" />
       <Folder Include="Storage\ConversationMessages\Conversation\Commands\Update" />
+      <Folder Include="Storage\ConversationMessages\Core\Commands\Delete" />
+      <Folder Include="Storage\ConversationMessages\Core\Commands\Update" />
       <Folder Include="Storage\ConversationMessages\Owner\Commands\Create" />
       <Folder Include="Storage\ConversationMessages\Owner\Commands\Delete" />
       <Folder Include="Storage\ConversationMessages\Owner\Commands\Update" />

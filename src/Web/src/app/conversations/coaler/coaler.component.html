@@ -6,7 +6,7 @@
        'selected': isThisSelected(conversation)}"
        class="card mb-2">
     <div class="card-body">
-      <h5 class="card-title">{{conversation.rightUser?.userName}}</h5>
+      <h5 class="card-title">{{conversationUser(conversation)}}</h5>
       <app-crimea [conversation]="conversation"></app-crimea>
     </div>
   </div>

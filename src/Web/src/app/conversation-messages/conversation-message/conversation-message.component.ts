@@ -3,11 +3,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 import {ConversationMessageListModel} from '../shared/conversation-message-list.model';
-import {ConversationMessageService, ListQuery, OnList} from '../shared/conversation-message.service';
 import {ConversationModel} from '../../conversations/shared/conversation.model';
 import {ConversationMessageModel} from '../shared/conversation-message.model';
 import {AuthService, OnVerified, VerifyCommand} from '../../core/auth.service';
 import {UserModel} from '../../auth/shared/user.model';
+import {CrimeaService, ListQuery, OnList} from '../shared/crimea.service';
 
 @Component({
   selector: 'app-conversation-message',
@@ -18,7 +18,7 @@ export class ConversationMessageComponent implements OnInit, OnList, OnVerified 
   public data: ConversationMessageModel[];
   public currentUser: UserModel;
 
-  public constructor(private messageService: ConversationMessageService, private authService: AuthService) {
+  public constructor(private crimeaService: CrimeaService, private authService: AuthService) {
   }
 
   // tslint:disable-next-line:variable-name
@@ -53,7 +53,7 @@ export class ConversationMessageComponent implements OnInit, OnList, OnVerified 
         return;
       }
 
-      this.messageService.getAll(new ListQuery(model.conversationId), this);
+      this.crimeaService.getAll(new ListQuery(model.conversationId), this);
     });
   }
 
