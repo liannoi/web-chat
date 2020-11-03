@@ -12,27 +12,25 @@
     </blockquote>
     <p>Detailed specification Swagger, you can find <a href="https://localhost:5001/api" target="_blank">here</a>.</p>
 
-    <h2>Overview</h2>
+    <h3>Overview</h3>
     <hr>
     <p>General information about important things.</p>
 
-    <h3 class="mb-3">Protocol</h3>
+    <h4 class="mb-3">Protocol</h4>
     <p>
       To keep the connection of clients with the server, the
       <code><a href="https://dotnet.microsoft.com/apps/aspnet/signalr">SignalR</a></code>
-      library is used, which implements the work of clients over the <code>WebSocket</code> protocol. The
-      <code><a href="https://github.com/christiandelbianco/monitor-table-change-with-sqltabledependency">SqlTableDependency</a></code>
-      library is used to notify clients about changes made not through the server, but through the DBMS, for example.
+      library is used, which implements the work of clients over the <code>WebSocket</code> protocol.
     </p>
 
-    <h3 class="mb-3">Architecture</h3>
+    <h4 class="mb-3">Architecture</h4>
     <p>On the server is implemented <code>CQRS</code> architecture.</p>
 
-    <h3 class="mb-3">Authentication</h3>
+    <h4 class="mb-3">Authentication</h4>
     <p>Authentication is implemented through <code>JWT</code> tokens. Verification and issuance of tokens takes place on
       the same server, without using IdentityServer.</p>
 
-    <h3 class="mb-3">Deploy</h3>
+    <h4 class="mb-3">Deploy</h4>
     <p>The application can be deployed in two ways: locally or via <code>Docker</code>. Detailed instructions for both
       cases will be described later...</p>
   </div>

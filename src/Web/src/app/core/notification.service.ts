@@ -6,7 +6,6 @@ import {Notifiable} from './notificable';
 import {ApiEndpoints} from '../shared/api.constants';
 
 @Injectable()
-// @ts-ignore
 export class NotificationService implements Notifiable {
   // tslint:disable-next-line:variable-name
   private readonly _connection: HubConnection;
@@ -26,8 +25,8 @@ export class NotificationService implements Notifiable {
   public async run(): Promise<void> {
     return await this._connection.start()
       .then(() => console.log('Hub connection started'))
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
         console.log('Error while establishing connection');
       });
   }

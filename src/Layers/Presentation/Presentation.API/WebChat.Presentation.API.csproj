@@ -34,8 +34,4 @@
       <_ContentIncludedByDefault Remove="app\WebChat.Presentation.API.runtimeconfig.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Common\Services" />
-    </ItemGroup>
-
 </Project>
