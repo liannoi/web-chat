@@ -72,6 +72,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnVerified, OnCreate {
   }
 
   public onCreateSuccess(): void {
+    this.sendMessageForm.reset(this.sendMessageForm.value);
   }
 
   ///////////////////////////////////////////////////////////////////////////

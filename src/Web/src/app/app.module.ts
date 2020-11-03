@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,7 +17,6 @@ import {DocsModule} from './docs/docs.module';
 import {ChatComponent} from './shared/chat/chat.component';
 import {ConversationsModule} from './conversations/conversations.module';
 import {ConversationMessagesModule} from './conversation-messages/conversation-messages.module';
-import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [

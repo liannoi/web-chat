@@ -5,6 +5,7 @@ import {BehaviorSubject} from 'rxjs';
 import {ConversationMessageModel} from '../shared/conversation-message.model';
 import {ConversationModel} from '../../conversations/shared/conversation.model';
 import {CrimeaService, DetailsQuery, OnDetails} from '../shared/crimea.service';
+import {NotificationService} from '../../core/notification.service';
 
 @Component({
   selector: 'app-crimea',
@@ -13,8 +14,9 @@ import {CrimeaService, DetailsQuery, OnDetails} from '../shared/crimea.service';
 })
 export class CrimeaComponent implements OnInit, OnDetails {
   public message: ConversationMessageModel;
+  private currentConversation: ConversationModel;
 
-  public constructor(private conversationMessageService: CrimeaService) {
+  public constructor(private conversationMessageService: CrimeaService, private notificationService: NotificationService) {
   }
 
   // tslint:disable-next-line:variable-name
@@ -29,14 +31,16 @@ export class CrimeaComponent implements OnInit, OnDetails {
     this._conversation.next(value);
   }
 
-  public ngOnInit(): void {
-    this._conversation.subscribe(model => {
-      if (!model) {
-        return;
-      }
-
-      this.conversationMessageService.getById(new DetailsQuery(model.conversationId), this);
+  public async ngOnInit() {
+    let isRefreshed = false;
+    this.notificationService.connection.on('ReceiveNotification', () => {
+      this.conversationMessageService.getById(new DetailsQuery(this.currentConversation?.conversationId), this);
+      isRefreshed = true;
     });
+
+    if (!isRefreshed) {
+      this.refresh();
+    }
   }
 
   public onDetailsFailed(error: any): void {
@@ -45,5 +49,20 @@ export class CrimeaComponent implements OnInit, OnDetails {
 
   public onDetailsSuccess(model: ConversationMessageModel): void {
     this.message = model;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private refresh() {
+    this._conversation.subscribe(model => {
+      if (!model) {
+        return;
+      }
+
+      this.currentConversation = model;
+      this.conversationMessageService.getById(new DetailsQuery(model.conversationId), this);
+    });
   }
 }

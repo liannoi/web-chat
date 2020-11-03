@@ -18,10 +18,12 @@ namespace WebChat.Application.API.Storage.ConversationMessages.Core.Commands.Cre
         private class Handler : IRequestHandler<CreateCommand>
         {
             private readonly IWebChatContext _context;
+            private readonly IMediator _mediator;
 
-            public Handler(IWebChatContext context)
+            public Handler(IWebChatContext context, IMediator mediator)
             {
                 _context = context;
+                _mediator = mediator;
             }
 
             public async Task<Unit> Handle(CreateCommand request, CancellationToken cancellationToken)
@@ -36,6 +38,9 @@ namespace WebChat.Application.API.Storage.ConversationMessages.Core.Commands.Cre
 
                 await _context.ConversationMessages.AddAsync(conversation, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
+
+                await _mediator.Publish(new MessageCreated {MessageId = conversation.ConversationMessageId},
+                    cancellationToken);
 
                 return Unit.Value;
             }

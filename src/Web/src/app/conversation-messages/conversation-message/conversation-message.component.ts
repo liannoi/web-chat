@@ -8,6 +8,7 @@ import {ConversationMessageModel} from '../shared/conversation-message.model';
 import {AuthService, OnVerified, VerifyCommand} from '../../core/auth.service';
 import {UserModel} from '../../auth/shared/user.model';
 import {CrimeaService, ListQuery, OnList} from '../shared/crimea.service';
+import {NotificationService} from '../../core/notification.service';
 
 @Component({
   selector: 'app-conversation-message',
@@ -17,8 +18,11 @@ import {CrimeaService, ListQuery, OnList} from '../shared/crimea.service';
 export class ConversationMessageComponent implements OnInit, OnList, OnVerified {
   public data: ConversationMessageModel[];
   public currentUser: UserModel;
+  public currentConversation: ConversationModel;
 
-  public constructor(private crimeaService: CrimeaService, private authService: AuthService) {
+  public constructor(private crimeaService: CrimeaService,
+                     private authService: AuthService,
+                     private notificationService: NotificationService) {
   }
 
   // tslint:disable-next-line:variable-name
@@ -45,16 +49,18 @@ export class ConversationMessageComponent implements OnInit, OnList, OnVerified 
     this._conversation.next(value);
   }
 
-  public ngOnInit(): void {
-    this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
-
-    this._conversation.subscribe(model => {
-      if (!model) {
-        return;
-      }
-
-      this.crimeaService.getAll(new ListQuery(model.conversationId), this);
+  public async ngOnInit() {
+    let isRefreshed = false;
+    this.notificationService.connection.on('ReceiveNotification', () => {
+      this.crimeaService.getAll(new ListQuery(this.currentConversation.conversationId), this);
+      isRefreshed = true;
     });
+
+    await this.notificationService.run();
+
+    if (!isRefreshed) {
+      this.refresh();
+    }
   }
 
   public onVerifiedSuccess(user: UserModel): void {
@@ -70,10 +76,27 @@ export class ConversationMessageComponent implements OnInit, OnList, OnVerified 
   }
 
   public onListSuccess(model: ConversationMessageListModel): void {
-    this.messages = model.messages;
+    console.log(model);
+    this._messages.next(model.messages);
   }
 
   public isMyMessage(ownerUserId: number) {
     return ownerUserId === this.currentUser?.userId;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private refresh() {
+    this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
+    this._conversation.subscribe(model => {
+      if (!model) {
+        return;
+      }
+
+      this.currentConversation = model;
+      this.crimeaService.getAll(new ListQuery(model.conversationId), this);
+    });
   }
 }

@@ -7,6 +7,7 @@ import {ConversationMessagesRoutingModule} from './conversation-messages-routing
 import {CrimeaService} from './shared/crimea.service';
 import {ConversationMessageComponent} from './conversation-message/conversation-message.component';
 import {ConversationMessageService} from './shared/conversation-message.service';
+import {NotificationService} from '../core/notification.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {ConversationMessageService} from './shared/conversation-message.service'
   ],
   providers: [
     ConversationMessageService,
-    CrimeaService
+    CrimeaService,
+    NotificationService
   ],
   exports: [
     CrimeaComponent,

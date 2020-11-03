@@ -39,7 +39,8 @@ namespace WebChat.Presentation.API
             services.AddHealthChecksUI().AddInMemoryStorage();
 
             services.AddCors();
-            services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilterAttribute()));
+            services.AddSignalR();
+            services.AddControllers(options => options.Filters.Add(new ApiExceptionFilterAttribute()));
 
             // Open API
             services.AddOpenApiDocument(configure =>
@@ -99,6 +100,7 @@ namespace WebChat.Presentation.API
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
                 endpoints.MapHealthChecksUI();
+                endpoints.MapHub<NotificationService>("/notifications");
             });
         }
     }
