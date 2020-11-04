@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {AbstractApiService} from '../../core/abstract-api.service';
 import {ConversationModel} from './conversation.model';
 import {HttpClient} from '@angular/common/http';
-import {ConversationsListModel} from './conversations-list.model';
 import {ApiEndpoints} from '../../shared/api.constants';
 import {catchError, takeUntil} from 'rxjs/operators';
 

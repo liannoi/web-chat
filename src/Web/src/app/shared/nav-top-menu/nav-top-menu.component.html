@@ -22,14 +22,15 @@
         </ul>
         <hr>
         <ul *ngIf="verifiedToken(); else unverifiedToken" class="navbar-nav ml-auto">
-          <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-            <a class="btn btn-outline-primary" tabindex="0" ngbDropdownToggle id="navbarDropdown" role="button">Account</a>
+          <li class="nav-item" display="dynamic" ngbDropdown placement="bottom-right">
+            <a class="btn btn-outline-primary" id="navbarDropdown" ngbDropdownToggle role="button"
+               tabindex="0">Account</a>
 
-            <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu">
-              <a ngbDropdownItem [routerLinkActive]="['text-primary']" [routerLink]="[paths.Contacts]">Contacts</a>
+            <div aria-labelledby="navbarDropdown" class="dropdown-menu" ngbDropdownMenu>
+              <a [routerLinkActive]="['text-primary']" [routerLink]="[paths.Contacts]" ngbDropdownItem>Contacts</a>
               <div class="dropdown-divider"></div>
-              <a ngbDropdownItem [routerLinkActive]="['text-primary']" [routerLink]="[paths.Profile]">Profile</a>
-              <a ngbDropdownItem [routerLinkActive]="['text-primary']" [routerLink]="[paths.Logout]">Logout</a>
+              <a [routerLinkActive]="['text-primary']" [routerLink]="[paths.Profile]" ngbDropdownItem>Profile</a>
+              <a [routerLinkActive]="['text-primary']" [routerLink]="[paths.Logout]" ngbDropdownItem>Logout</a>
             </div>
           </li>
         </ul>
