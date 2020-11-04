@@ -7,6 +7,10 @@ import {UserModel} from '../../auth/shared/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
 import {ContactsOwnerService, ListQuery, OnList} from '../shared/contacts-owner.service';
 import {ContactsListModel} from '../shared/contacts-list.model';
+import {CoalerService} from '../../conversations/shared/coaler.service';
+import {ConversationService, CreateCommand} from '../../conversations/shared/conversation.service';
+import {ConversationModel} from '../../conversations/shared/conversation.model';
+import {ContactModel} from '../shared/contact.model';
 
 @Component({
   selector: 'app-contacts-owner',

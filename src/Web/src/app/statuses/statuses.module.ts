@@ -9,8 +9,7 @@ import {StatusesRoutingModule} from './statuses-routing.module';
   imports: [
     CommonModule,
     StatusesRoutingModule
-  ],
-  exports: [NotFoundComponent]
+  ]
 })
 export class StatusesModule {
 }

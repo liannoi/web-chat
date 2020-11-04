@@ -27,12 +27,6 @@ import {ProfileComponent} from './profile/profile.component';
     FontAwesomeModule,
     AuthRoutingModule
   ],
-  exports: [
-    LoginComponent,
-    LogoutComponent,
-    ProfileComponent,
-    SignupComponent
-  ],
   providers: [
     AuthService,
     CookieService

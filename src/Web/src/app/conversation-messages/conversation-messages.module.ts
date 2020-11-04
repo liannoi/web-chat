@@ -11,8 +11,8 @@ import {NotificationService} from '../core/notification.service';
 
 @NgModule({
   declarations: [
-    CrimeaComponent,
-    ConversationMessageComponent
+    ConversationMessageComponent,
+    CrimeaComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +25,8 @@ import {NotificationService} from '../core/notification.service';
     NotificationService
   ],
   exports: [
-    CrimeaComponent,
-    ConversationMessageComponent
+    ConversationMessageComponent,
+    CrimeaComponent
   ]
 })
 export class ConversationMessagesModule {

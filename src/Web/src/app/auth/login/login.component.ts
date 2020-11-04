@@ -17,12 +17,16 @@ import {AuthService, LoginCommand, OnLogin} from '../../core/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy, OnLogin {
+
+  public paths = ApplicationPaths;
+
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
-  public paths = ApplicationPaths;
+
   public fieldTextType: boolean;
   public faEye = faEye;
   public faEyeSplash = faEyeSlash;
+
   private user: UserModel = new UserModel();
 
   public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
@@ -51,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy, OnLogin {
 
   public onLoginSuccess(token: JwtTokenModel): void {
     this.authService.writeToken(token);
-    this.router.navigate(['/']);
+    this.router.navigate([this.paths.Home]);
   }
 
   public onLoginFailed(error: any): void {

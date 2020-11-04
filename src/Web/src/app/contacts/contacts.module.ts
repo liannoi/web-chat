@@ -11,8 +11,7 @@ import {ContactsOwnerService} from './shared/contacts-owner.service';
     CommonModule,
     ContactsRoutingModule
   ],
-  providers: [ContactsOwnerService],
-  exports: [ContactsOwnerComponent]
+  providers: [ContactsOwnerService]
 })
 export class ContactsModule {
 }

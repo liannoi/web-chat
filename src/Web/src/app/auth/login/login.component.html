@@ -1,7 +1,5 @@
 <div class="row mt-5 d-flex justify-content-center align-items-center">
-  <div class="col-sm-12">
-    <h2 class="text-center mt-3 font-weight-light">Sign in to Web Chat</h2>
-  </div>
+  <div class="col-sm-12"><h2 class="text-center mt-3 font-weight-light">Sign in to Web Chat</h2></div>
 </div>
 
 <div class="row mt-3 d-flex justify-content-center align-items-center">
@@ -12,44 +10,44 @@
         <input class="form-control" formControlName="username" id="user_username" required type="text">
 
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger mt-1">
-          <div *ngIf="username.errors.required">
-            <span>Username cannot be empty.</span>
-          </div>
-          <div *ngIf="username.errors.pattern">
-            <span>Username cannot contain spaces.</span>
-          </div>
+          <div *ngIf="username.errors.required"><span>Username cannot be empty.</span></div>
+          <div *ngIf="username.errors.pattern"><span>Username cannot contain spaces.</span></div>
         </div>
       </div>
 
       <div class="form-group">
         <label class="font-weight-bold" for="user_password">Password</label>
+
         <div class="input-group">
-          <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="password" id="user_password"
+          <input [type]="fieldTextType ? 'text' : 'password'"
+                 class="form-control"
+                 formControlName="password"
+                 id="user_password"
                  required>
+
           <div *ngIf="fieldTextType; then faEyeBlock else faEyeSlashBlock" class="input-group-append"></div>
         </div>
 
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger mt-1">
-          <div *ngIf="password.errors.required">
-            <span>Password cannot be empty.</span>
-          </div>
+          <div *ngIf="password.errors.required"><span>Password cannot be empty.</span></div>
           <div *ngIf="password.errors.pattern">
             <span>Make sure it's at least 8 characters, including a number, uppercase and lowercase letters.</span>
           </div>
         </div>
 
         <div *ngIf="haveFirstAttempt && (formGroup.errors?.unauthorized && (formGroup.touched || formGroup.dirty))"
-             class="text-danger mt-3">
-          <span>Username or password is incorrect.</span>
+             class="text-danger mt-3"><span>Username or password is incorrect.</span>
         </div>
       </div>
 
       <div class="form-row">
         <div class="col-sm-12">
-          <button [disabled]="formGroup.invalid" class="btn btn-success w-100 font-weight-bold" type="submit">Sign in
+          <button [disabled]="formGroup.invalid" class="btn btn-success w-100 font-weight-bold" type="submit">
+            Sign in
           </button>
-          <a [routerLink]="'/' + [paths.Signup]" class="btn btn-light w-100 font-weight-bold mt-2 border">Create your
-            account</a>
+
+          <a [routerLink]="'/' + [paths.Signup]"
+             class="btn btn-light w-100 font-weight-bold mt-2 border">Create your account</a>
         </div>
       </div>
     </form>

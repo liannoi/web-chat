@@ -31,6 +31,8 @@
       <Folder Include="Storage\ConversationMessages\Owner\Queries\Details" />
       <Folder Include="Storage\ConversationMessages\Owner\Queries\List" />
       <Folder Include="Storage\Conversations" />
+      <Folder Include="Storage\Conversations\Core\Commands\Delete" />
+      <Folder Include="Storage\Conversations\Core\Commands\Update" />
       <Folder Include="Storage\GroupAdministrators\Commands\Create" />
       <Folder Include="Storage\GroupAdministrators\Commands\Delete" />
       <Folder Include="Storage\GroupAdministrators\Commands\Update" />

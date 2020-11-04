@@ -6,7 +6,6 @@ namespace WebChat.Application.API.Storage.Conversations.Core.Models
     public class DetailsViewModel : IMapFrom<Domain.API.Entities.Conversations>
     {
         public int ConversationId { get; set; }
-
         public Users.Models.DetailsViewModel LeftUser { get; set; }
         public Users.Models.DetailsViewModel RightUser { get; set; }
 

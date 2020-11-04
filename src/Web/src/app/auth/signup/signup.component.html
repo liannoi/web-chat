@@ -24,7 +24,8 @@
       <div class="form-group">
         <label class="font-weight-bold" for="user_password">Password</label>
         <div class="input-group">
-          <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="password" id="user_password"
+          <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="password"
+                 id="user_password"
                  required>
           <div *ngIf="fieldTextType; then faEyeBlock else faEyeSlashBlock" class="input-group-append"></div>
         </div>

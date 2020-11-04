@@ -9,8 +9,7 @@ import {ApiDocsComponent} from './api-docs/api-docs.component';
   imports: [
     DocsRoutingModule,
     CommonModule
-  ],
-  exports: [ApiDocsComponent]
+  ]
 })
 export class DocsModule {
 }
