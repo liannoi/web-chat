@@ -58,7 +58,7 @@ export class CoalerComponent implements OnInit, OnList {
     return this.selectedConversation?.conversationId === conversation.conversationId;
   }
 
-  public conversationUser(conversation: ConversationModel) {
+  public conversationUser(conversation: ConversationModel): string {
     return conversation.rightUser?.userId === this.userModel?.userId
       ? conversation.leftUser?.userName
       : conversation.rightUser?.userName;

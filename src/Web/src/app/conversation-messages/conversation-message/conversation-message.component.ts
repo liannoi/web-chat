@@ -84,6 +84,12 @@ export class ConversationMessageComponent implements OnInit, OnList, OnVerified 
     return ownerUserId === this.currentUser?.userId;
   }
 
+  public conversationUser(): string {
+    return this.conversation.rightUser?.userId === this.currentUser?.userId
+      ? this.conversation.leftUser?.userName
+      : this.conversation.rightUser?.userName;
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
