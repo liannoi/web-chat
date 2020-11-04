@@ -5,7 +5,7 @@
 </div>
 
 <div class="row mt-5 d-flex justify-content-center align-items-center">
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <form (ngSubmit)="signup()" [formGroup]="formGroup" method="post">
       <div class="form-group">
         <label class="font-weight-bold" for="user_username">Username</label>
@@ -23,7 +23,11 @@
 
       <div class="form-group">
         <label class="font-weight-bold" for="user_password">Password</label>
-        <input class="form-control" formControlName="password" id="user_password" required type="password">
+        <div class="input-group">
+          <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="password" id="user_password"
+                 required>
+          <div *ngIf="fieldTextType; then faEyeBlock else faEyeSlashBlock" class="input-group-append"></div>
+        </div>
 
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger mt-1">
           <div *ngIf="password.errors.required">
@@ -50,3 +54,15 @@
     </form>
   </div>
 </div>
+
+<ng-template #faEyeBlock>
+  <span (click)="toggleFieldTextType()" class="input-group-text">
+    <fa-icon [icon]="faEye"></fa-icon>
+  </span>
+</ng-template>
+
+<ng-template #faEyeSlashBlock>
+  <span (click)="toggleFieldTextType()" class="input-group-text">
+    <fa-icon [icon]="faEyeSplash"></fa-icon>
+  </span>
+</ng-template>

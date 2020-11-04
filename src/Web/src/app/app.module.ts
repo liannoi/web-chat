@@ -17,6 +17,7 @@ import {DocsModule} from './docs/docs.module';
 import {ChatComponent} from './shared/chat/chat.component';
 import {ConversationsModule} from './conversations/conversations.module';
 import {ConversationMessagesModule} from './conversation-messages/conversation-messages.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {ConversationMessagesModule} from './conversation-messages/conversation-m
     AppRoutingModule,
     StatusesModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   exports: [
     AppComponent,

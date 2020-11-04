@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
+import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+
 import {AuthService, OnSignup, SignupCommand} from '../../core/auth.service';
 import {UserModel} from '../shared/user.model';
 import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
@@ -17,6 +19,9 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
   public formGroup: FormGroup;
   public haveFirstAttempt = false;
   public identityError = '';
+  public fieldTextType: boolean;
+  public faEye = faEye;
+  public faEyeSplash = faEyeSlash;
   private user: UserModel = new UserModel();
 
   public constructor(private authService: AuthService, private router: Router, private titleService: Title) {
@@ -72,6 +77,10 @@ export class SignupComponent implements OnInit, OnDestroy, OnSignup {
 
     this.user = this.formGroup.getRawValue() as UserModel;
     this.authService.signup(new SignupCommand(this.user), this);
+  }
+
+  public toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 
   ///////////////////////////////////////////////////////////////////////////

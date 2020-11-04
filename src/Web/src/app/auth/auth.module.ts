@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
 import {CookieService} from 'ngx-cookie-service';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {LoginComponent} from './login/login.component';
 import {AuthService} from '../core/auth.service';
@@ -23,6 +24,7 @@ import {ProfileComponent} from './profile/profile.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     AuthRoutingModule
   ],
   exports: [

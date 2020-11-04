@@ -12,6 +12,8 @@ import {ApplicationNamings, ApplicationPaths} from '../../shared/app.constants';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy, OnVerified {
+  public user: UserModel;
+
   public constructor(private titleService: Title, private router: Router, private authService: AuthService) {
     titleService.setTitle(`Your profile - ${ApplicationNamings.Application}`);
   }
@@ -20,8 +22,8 @@ export class ProfileComponent implements OnInit, OnDestroy, OnVerified {
     this.authService.verify(new VerifyCommand(this.authService.readToken()), this);
   }
 
-  public onVerifiedSuccess(token: UserModel): void {
-    console.log(token);
+  public onVerifiedSuccess(user: UserModel): void {
+    this.user = user;
   }
 
   public onVerifiedFailed(error: any): void {
