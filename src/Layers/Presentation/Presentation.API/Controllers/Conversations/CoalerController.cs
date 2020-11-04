@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.Conversations.Core.Models;
-using WebChat.Application.API.Storage.Conversations.LeftOrRight.Queries;
+using WebChat.Application.API.Storage.Conversations.Models;
+using WebChat.Application.API.Storage.Conversations.Queries;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.Conversations
@@ -11,7 +11,7 @@ namespace WebChat.Presentation.API.Controllers.Conversations
         [HttpGet("{id}")]
         public async Task<ActionResult<ListViewModel>> GetAll(int id)
         {
-            return Ok(await Mediator.Send(new ListQuery {UserId = id}));
+            return Ok(await Mediator.Send(new LeftOrRightListQuery {UserId = id}));
         }
     }
 }
