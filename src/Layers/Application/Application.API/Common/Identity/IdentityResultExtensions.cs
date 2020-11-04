@@ -1,7 +1,6 @@
 using System.Linq;
-using WebChat.Application.API.Common.Identity;
 
-namespace WebChat.Infrastructure.API.Identity
+namespace WebChat.Application.API.Common.Identity
 {
     public static class IdentityResultExtensions
     {

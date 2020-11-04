@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using WebChat.Application.API.Common.Identity;
+using WebChat.Application.API.Common.Interfaces;
 using WebChat.Application.API.Storage.Users.Models;
 
 namespace WebChat.Application.API.Storage.Users.Commands.Login

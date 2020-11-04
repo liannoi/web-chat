@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Common.Interfaces;
 using WebChat.Application.API.Storage.Conversations.Core.Models;
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebChat.Application.API.Common.Identity;
+using WebChat.Application.API.Common.Interfaces;
 using WebChat.Application.API.Storage.Users.Models;
 using WebChat.Domain.API.Identity;
 using IdentityResult = WebChat.Application.API.Common.Identity.IdentityResult;

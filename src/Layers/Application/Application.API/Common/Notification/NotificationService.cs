@@ -1,8 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using WebChat.Application.API.Common.Interfaces;
 
-namespace WebChat.Application.API
+namespace WebChat.Application.API.Common.Notification
 {
     public class NotificationService : Hub<INotificationService>
     {

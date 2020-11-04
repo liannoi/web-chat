@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace WebChat.Application.API.Common.Interfaces
+namespace WebChat.Application.API.Common.Notification
 {
     public interface INotificationService
     {

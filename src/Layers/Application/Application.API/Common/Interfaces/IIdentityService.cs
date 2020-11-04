@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
+using WebChat.Application.API.Common.Identity;
 using WebChat.Application.API.Storage.Users.Models;
 using WebChat.Domain.API.Identity;
 
-namespace WebChat.Application.API.Common.Identity
+namespace WebChat.Application.API.Common.Interfaces
 {
     public interface IIdentityService : IIdentityServer<ApplicationUser, int>
     {

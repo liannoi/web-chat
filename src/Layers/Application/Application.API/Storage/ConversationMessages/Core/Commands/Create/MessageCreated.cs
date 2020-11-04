@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using WebChat.Application.API.Common.Interfaces;
+using WebChat.Application.API.Common.Notification;
 
 namespace WebChat.Application.API.Storage.ConversationMessages.Core.Commands.Create
 {

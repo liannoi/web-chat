@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-using WebChat.Application.API.Common.Identity;
+using WebChat.Application.API.Common.Interfaces;
 
 namespace WebChat.Presentation.API.Common
 {
