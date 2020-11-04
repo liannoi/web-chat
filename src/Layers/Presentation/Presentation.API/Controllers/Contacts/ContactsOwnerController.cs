@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.Contacts.Core.Models;
-using WebChat.Application.API.Storage.Contacts.Owner.Queries;
+using WebChat.Application.API.Storage.Contacts.Models;
+using WebChat.Application.API.Storage.Contacts.Queries;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.Contacts
@@ -11,7 +11,7 @@ namespace WebChat.Presentation.API.Controllers.Contacts
         [HttpGet("{id}")]
         public async Task<ActionResult<ListViewModel>> GetAll(int id)
         {
-            return Ok(await Mediator.Send(new ListQuery {OwnerUserId = id}));
+            return Ok(await Mediator.Send(new OwnerListQuery {OwnerUserId = id}));
         }
     }
 }

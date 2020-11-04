@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebChat.Application.API.Storage.ConversationMessages.Core.Commands.Create;
+using WebChat.Application.API.Storage.ConversationMessages.Commands.Create;
 using WebChat.Presentation.API.Common;
 
 namespace WebChat.Presentation.API.Controllers.ConversationMessages
