@@ -11,9 +11,9 @@
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.2" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
         <PackageReference Include="MediatR" Version="9.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.29" />
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.9" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.29" />
         <PackageReference Include="NSwag.AspNetCore" Version="13.8.2" />
         <PackageReference Include="NSwag.MSBuild" Version="13.8.2">
           <PrivateAssets>all</PrivateAssets>
